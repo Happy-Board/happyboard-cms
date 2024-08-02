@@ -1,0 +1,98 @@
+.container {
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+
+
+.table {
+    width: 100%;
+}
+
+.table thead {
+    font-weight: bold;
+}
+
+
+.table td {
+    max-width: 10px;
+    padding: 10px;
+
+}
+
+.status {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+.title {
+    overflow: hidden;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.view {
+    background-color: teal;
+    border: none;
+    width: 40px;
+
+}
+
+.approve {
+    background-color: rgb(61, 125, 221);
+    border: none;
+    width: 40px;
+
+}
+
+.delete {
+    background-color: red;
+    border: none;
+    width: 40px;
+
+}
+
+.button:disabled {
+    cursor: not-allowed;
+
+}
+
+.approve:disabled {
+    background-color: rgb(102, 102, 93);
+}
+
+.reported {
+    background-color: rgb(218, 48, 48);
+    color: black;
+}
+
+.released {
+    background-color: rgb(71, 226, 226);
+    color: black;
+}
+
+.pending {
+    background-color: rgb(247, 247, 131);
+    color: black;
+}

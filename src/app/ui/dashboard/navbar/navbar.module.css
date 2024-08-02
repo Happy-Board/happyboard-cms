@@ -1,0 +1,47 @@
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--bgSoft);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    color: var(--textSoft);
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 10px;
+
+}
+
+.menu {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--bgSofter);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.input {
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+}
+
+.input:focus {
+    outline: none;
+
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}

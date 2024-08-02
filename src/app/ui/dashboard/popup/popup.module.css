@@ -1,0 +1,41 @@
+.addButton {
+    padding: 10px;
+    background-color: #5d57c9;
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.status {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+}
+
+.fix {
+    background-color: teal;
+    border: none;
+    width: 40px;
+
+}
+
+.input {
+    background-color: var(--bgSofter);
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    padding: 10px;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.catName {
+    font-weight: bold;
+    color: var(--textSoft);
+}

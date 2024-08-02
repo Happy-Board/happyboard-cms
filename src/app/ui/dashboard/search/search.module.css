@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--bgSofter);
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 80%;
+}
+
+.input {
+    background-color: transparent;
+    border: none;
+    color: var(--text);
+}
+
+.input:focus {
+    outline: none;
+}
