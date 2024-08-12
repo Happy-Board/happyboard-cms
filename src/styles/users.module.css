@@ -1,0 +1,79 @@
+.container {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* .title{
+    margin-bottom: 20px;
+    font-weight: 200;
+    color: var(--text);
+} */
+
+.table {
+  width: 100%;
+}
+
+.table td {
+  max-width: 10px;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.userImage {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.status {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+
+}
+
+.button {
+  padding: 5px 10px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.view {
+  background-color: teal;
+  border: none;
+}
+
+.block {
+  background-color: rgb(236, 9, 54);
+  border: none;
+}
+
+.delete {
+  background-color: red;
+  border: none;
+}
+
+.block:disabled {
+  background-color: rgb(158, 75, 92);
+}
+.usrl{
+  text-transform: capitalize;
+}
+.usrs{
+  text-transform: capitalize;
+}

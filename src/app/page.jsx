@@ -1,10 +1,7 @@
-const Home = () => {
-    return (
-        <div>
-            HomePage
-        </div>
-    );
+'use client'
+
+function Home() {
+    return (<div>Home</div>)
 }
 
 export default Home;
-

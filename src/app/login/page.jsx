@@ -1,5 +1,15 @@
+'use client'
+
+import 'dotenv/config';
+import styles from "@/styles/login.module.css";
+import LoginForm from "@/components/ui/login/loginForm/loginForm";
+
 const LoginPage = () => {
-    return (<div>Login Page</div>);
-}
+  return (
+    <div className={styles.container}>
+      <LoginForm />
+    </div>
+  );
+};
 
 export default LoginPage;

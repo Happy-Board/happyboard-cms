@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+
+}
+
+.formContainer {
+    flex: 3;
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.title {
+    padding: 20px;
+}
+
+.author {
+    padding: 5px 20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.buttonContainer{
+    display: flex;
+}
+
+.buttonContainer button {
+    width: 80%;
+    margin: 20px;
+    padding: 20px;
+    background-color: teal;
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: rgb(241, 234, 234);
+    font-weight: bold;
+
+}
