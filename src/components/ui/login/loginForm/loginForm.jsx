@@ -15,7 +15,6 @@ const LoginForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -41,7 +40,6 @@ console.log(formData);
       {error && <p className={styles.error}>{error}</p>}
       <input type="email" placeholder="Email" name="email" onChange={handleChange} required />
       <input type="password" placeholder="Password" name="password" onChange={handleChange} required />
-
       <button type="submit" >Login</button>
     </form >
   );

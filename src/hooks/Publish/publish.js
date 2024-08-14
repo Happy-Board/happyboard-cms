@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import useAuth from '@/lib/auth';
-import { getAPIPublishIdea } from '@/services/utils';
+import { getAPIActiveUser, getAPIPublishIdea } from '@/services/utils';
 
 export const usePublishIdea = () => {
-    const { userId, isAuthenticated } = useAuth();
+    const { uid, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(true);
     const [isSuccess, setIsSuccess] = useState(false);
 
     const publishIdea = async (ideaId) => {
-        if (isAuthenticated && userId) {
+        if (isAuthenticated && uid) {
             setLoading(true);
             try {
-                const res = await getAPIPublishIdea(ideaId, userId);
+                const res = await getAPIPublishIdea(ideaId, uid);
                 setIsSuccess(res);
             } catch (error) {
                 console.error('Failed to unpublish idea:', error);
@@ -25,3 +25,48 @@ export const usePublishIdea = () => {
 
     return { loading, isSuccess, publishIdea }
 };
+
+// export const useActiveUser = () => {
+//     const { uid, isAuthenticated } = useAuth();
+//     const [loading, setLoading] = useState(true);
+//     const [isSuccess, setIsSuccess] = useState(false);
+
+//     const activeUser = async (userId) => {
+//         if (isAuthenticated && userId) {
+//             setLoading(true);
+//             try {
+//                 const res = await getAPIActiveUser(userId, uid);
+//                 setIsSuccess(res);
+//             } catch (err) {
+//                 console.log(err);
+//                 setIsSuccess(false);
+//             } finally {
+//                 setLoading(false);
+//             }
+//         }
+//     };
+
+//     return { loading, isSuccess, activeUser }
+// }
+export const useActiveUser = () => {
+    const { uid, isAuthenticated } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const activeUser = async (userId) => {
+        if (isAuthenticated && uid) {
+            setLoading(true);
+            try {
+                const success = await getAPIActiveUser(userId, uid);
+                setIsSuccess(success);
+            } catch (err) {
+                console.error(err);
+                setIsSuccess(false);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
+    return { loading, isSuccess, activeUser }
+}

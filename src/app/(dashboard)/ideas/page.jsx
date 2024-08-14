@@ -13,41 +13,53 @@ import styles from '@/styles/idea.module.css';
 import moment from 'moment-timezone';
 import { useUnpublishIdea } from '@/hooks/Publish/unPublish';
 import { usePublishIdea } from '@/hooks/Publish/publish';
-import { useState } from 'react';
-
-
-
 
 const IdeaPage = ({ searchParams }) => {
     const q = searchParams?.q || "";
     const page = searchParams?.page || 1;
 
     const { ideas: initialIdeas, count, loading } = useIdeasData(q, page);
-    const [ideas, setIdeas] = useState(initialIdeas);
-
 
     const { unpublishIdea } = useUnpublishIdea();
     const { publishIdea } = usePublishIdea();
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div><div className={styles.container} >
+        <div className={styles.top}>
+            <Search />
+        </div>
+        <table className={styles.table}>
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>Requested Date</td>
+                    <td>Category</td>
+                    <td>Status</td>
+                    <td>Action</td>
+
+                </tr>
+            </thead>
+        </table>
+        <Pagination count={count} />
+    </div>
+
+    </div>;
 
     const handleUnpublish = async (id) => {
-        await unpublishIdea(id);
-        setIdeas(prevIdeas =>
-            prevIdeas.map(idea =>
-                idea.id === id ? { ...idea, isPublished: false } : idea
-            )
-        );
+        try {
+            await unpublishIdea(id);
+        } catch (error) {
+            console.error('Failed to unpublish idea:', error);
+        }
     }
     const handlePublish = async (id) => {
-        await publishIdea(id);
-        setIdeas(prevIdeas =>
-            prevIdeas.map(idea =>
-                idea.id === id ? { ...idea, isPublished: true } : idea
-            )
-        );
-    }
+        try {
+            await publishIdea(id);
 
+        } catch (error) {
+            console.error('Failed to publish idea:', error);
+        }
+    }
 
     return (
         <div className={styles.container} >
@@ -84,18 +96,24 @@ const IdeaPage = ({ searchParams }) => {
                             </td>
                             <td>
                                 <div className={styles.buttons}>
-                                    <Link href={`/ideas/${idea.id}`}>
+                                    <Link href={`/ideas/${idea.id}?page=${page}`}>
                                         <button className={`status ${styles.view}`} title='View'><MdVisibility /></button>
                                     </Link>
                                     <button className={`status ${styles.approve}`}
                                         title='Release'
                                         disabled={idea.isPublished}
-                                        onClick={() => { handlePublish(idea.id) }}>
+                                        onClick={() => {
+                                            handlePublish(idea.id)
+                                            window.location.reload();
+                                        }}>
                                         <MdVerified />
                                     </button>
-                                    <button className={`status ${styles.delete}`}
+                                    <button className={`status ${styles.unpublish}`}
                                         title='Unpublish'
-                                        onClick={() => { handleUnpublish(idea.id) }}
+                                        onClick={() => {
+                                            handleUnpublish(idea.id)
+                                            window.location.reload();
+                                        }}
                                         disabled={!idea.isPublished}>
                                         <MdBlock />
                                     </button>

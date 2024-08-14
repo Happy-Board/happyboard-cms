@@ -4,6 +4,7 @@
     border-radius: 10px;
     margin-top: 20px;
 }
+
 .table {
     width: 100%;
 }
@@ -32,46 +33,45 @@
 .buttons {
     display: flex;
     gap: 10px;
+    padding: 10px;
 }
 
 .view {
     background-color: teal;
-    border: none;
+
 
 }
 
 .approve {
     background-color: rgb(61, 125, 221);
-    border: none;
-
 }
-.delete {
-    background-color: red;
-    border: none;
 
+.unpublish {
+    background-color: red;
 }
 
 .button:disabled {
-    cursor: not-allowed;
-
+    cursor: default;
 }
 
 .approve:disabled {
     background-color: rgb(102, 102, 93);
 }
 
-/* .reported {
-    background-color: rgb(218, 48, 48);
-    color: black;
-} */
+.unpublish:disabled {
+    background-color: rgb(102, 102, 93);
+    cursor: default;
+}
+
 
 .released {
-    background-color: rgb(71, 226, 226);
-    color: black;
+    border: 2px solid var(--bgSofter);
+    color: rgb(71, 226, 226);
+    font-weight: bold;
 }
 
 .pending {
-    background-color: rgb(247, 247, 131);
-    color: black;
-    
+    border: 2px solid var(--bgSofter);
+    color: rgb(247, 247, 131);
+    font-weight: bold;
 }

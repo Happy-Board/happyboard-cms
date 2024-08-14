@@ -24,21 +24,49 @@
     padding: 20px;
 }
 
-.buttonContainer{
+.buttonContainer {
     display: flex;
+}
+
+.approve {
+    background-color: rgb(61, 125, 221);
+}
+.approve:disabled {
+    background-color: rgb(102, 102, 93);
+    cursor: default;
+}
+
+.unpublish {
+    background-color: red;
+}
+.unpublish:disabled {
+    background-color: rgb(102, 102, 93);
+    cursor: default;
 }
 
 .buttonContainer button {
     width: 80%;
     margin: 20px;
     padding: 20px;
-    background-color: teal;
     color: var(--text);
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
     color: rgb(241, 234, 234);
     font-weight: bold;
 
+}
+
+.released {
+    border: 2px solid var(--bgSofter);
+    color: rgb(71, 226, 226);
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.pending {
+    border: 2px solid var(--bgSofter);
+    color: rgb(247, 247, 131);
+    font-weight: bold;
+    margin-left: 20px;
 }

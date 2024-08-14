@@ -1,11 +1,11 @@
-import { getAPIUsers, getAPIIdeas, getAPIIdea } from '@/services/utils'
+import { getAPIUsers, getAPIIdeas, getAPIUser } from '@/services/utils'
 
-// export const fetchUsers = async (userId) => {
 export const fetchUsers = async (userId, q, page) => {
     try {
-        const User = await getAPIUsers(userId);
-        const users = User;
-        const count = User.length;
+        const User = await getAPIUsers(page, userId);
+        console.log(User);
+        const count = User.total;
+        const users = User.users;
         return { users, count };
     } catch (err) {
         console.log(err);
@@ -23,15 +23,19 @@ export const fetchIdeas = async (userId, q, page) => {
     }
 };
 
-export const fetchIdea = async (ideaId, uid) => {
+export const fetchIdea = async (page, userId) => {
     try {
-        const idea = await getAPIIdea(ideaId, uid);
-        const title = idea.title;
-        const content = idea.content;
-        const author = idea.User.username;
-
-        return { title, content, author }
+        const ideas = await getAPIIdeas(page, userId);
+        return { ideas }
     } catch (err) {
         console.log(err);
     }
 };
+export const fetchUser = async (userId,uid) => {
+    try {
+        const user = await getAPIUser(userId,uid);
+        return user;
+    }catch(err){
+        console.log(err);
+    }
+}

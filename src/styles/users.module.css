@@ -13,6 +13,7 @@
 
 .table {
   width: 100%;
+  margin-top: 20px;
 }
 
 .table td {
@@ -38,42 +39,47 @@
   padding: 5px;
   font-size: 14px;
   color: white;
-  cursor: pointer;
 }
 
 .buttons {
   display: flex;
   gap: 10px;
-
+  padding: 10px;
 }
 
 .button {
   padding: 5px 10px;
   color: var(--text);
-  cursor: pointer;
 }
 
 .view {
   background-color: teal;
-  border: none;
 }
 
 .block {
-  background-color: rgb(236, 9, 54);
-  border: none;
-}
-
-.delete {
   background-color: red;
-  border: none;
 }
 
 .block:disabled {
-  background-color: rgb(158, 75, 92);
+  background-color: rgb(102, 102, 93);
 }
-.usrl{
+
+.approve {
+  background-color: rgb(61, 125, 221);
+}
+
+.approve:disabled {
+  background-color: rgb(102, 102, 93);
+}
+
+.button :disabled {
+  cursor: not-allowed;
+}
+
+.usrl {
   text-transform: capitalize;
 }
-.usrs{
+
+.usrs {
   text-transform: capitalize;
 }

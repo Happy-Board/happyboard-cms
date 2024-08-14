@@ -14,7 +14,7 @@ const Dashboard = ({ searchParams }) => {
     const q = searchParams?.q || "";
     const page = searchParams?.page || 1;
 
-    const { users, count: usersCount, loading: usersLoading } = useUsersData();
+    const { users, count: usersCount, loading: usersLoading } = useUsersData(q, page);
     const { ideas, count: ideasCount, loading: ideasLoading } = useIdeasData(q, page);
 
 

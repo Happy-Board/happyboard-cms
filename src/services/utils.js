@@ -1,9 +1,9 @@
 
 import { axiosInstance } from '../configs/axios.config';
 
-export const getAPIUsers = async (uid) => {
+export const getAPIUsers = async (page, uid) => {
     let result = null
-    await axiosInstance.get('/users', uid)
+    await axiosInstance.get(`/users?page=${page}`, page, uid)
         .then(res => {
             if (res.data.status !== 200) {
                 console.log(`Loi`)
@@ -14,9 +14,22 @@ export const getAPIUsers = async (uid) => {
         .catch(error => console.log(error));
     return result
 }
+export const getAPIUser = async (userId, uid) => {
+    let result = null;
+    // await axiosInstance.get(`/users/${userId}`,userId,uid)
+    await axiosInstance.get(`/users/${userId}`, uid)
+        .then(res => {
+            if (res.data.status !== 200) {
+                console.log(`Loi`)
+            } else {
+                result = res.data.data
+            }
+        }).catch(error => console.log(error));
+    return result
+}
 export const getAPIIdeas = async (page, uid) => {
     let result = null
-    await axiosInstance.get(`/ideas/all?page=${page}`, page, uid)
+    await axiosInstance.get(`/ideas/all?page=${page}&limit=10`, page, uid)
         .then(res => {
             if (res.data.status !== 200) {
                 console.log(`Loi`)
@@ -59,4 +72,47 @@ export const getAPIPublishIdea = async (ideaId, uid) => {
                 return res.data.data;
             }
         })
+}
+export const getAPIActiveUser = async (userId, uid) => {
+    try {
+        const res = await axiosInstance.put(`users/${userId}/status`, {
+            status: 'active'
+        }, {
+            headers: { Authorization: `Bearer ${uid}` }
+        });
+        if (res.data.status !== 200) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.message === "Change status user successfully";
+    } catch (error) {
+        console.error('Error activating user:', error);
+        throw error;
+    }
+}
+export const getAPIBanUser = async (userId, uid) => {
+    try {
+        const res = await axiosInstance.put(`users/${userId}/status`, {
+            userId,
+            status: 'block'
+        }, {
+            headers: { Authorization: `Bearer ${uid}` }
+        });
+        if (res.data.status !== 200) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.message === "Change status user successfully";
+    } catch (error) {
+        console.error('Error banning user:', error);
+        throw error;
+    }
+}
+export const getAPICats = async (uid) => {
+    let result = null;
+    try {
+        const res = await axiosInstance.get(`/categories`);
+        
+
+    }catch(err) {
+        console.log(err);
+    }
 }

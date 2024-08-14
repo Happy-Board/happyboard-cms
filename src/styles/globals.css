@@ -27,5 +27,12 @@ a {
     font-size: 14px;
     color: var(--text);
     width: 35px;
+}
+
+* button{
     cursor: pointer;
+}
+
+* button:disabled{
+    cursor:default;
 }

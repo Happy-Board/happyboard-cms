@@ -74,7 +74,6 @@ const Category = () => {
                                 </button>
                             </div>
                         </td>
-
                     </tr>
                 </tbody>
             </table>

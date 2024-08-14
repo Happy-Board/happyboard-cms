@@ -1,79 +1,26 @@
-// 'use client'
-
-
-// import React, { useState, useEffect } from 'react';
-// import { axiosInstance } from '../configs/axios.config';
-
-// const useAuth = () => {
-//     const [isAuthenticated, setIsAuthenticated] = useState(false);
-//     const [userId, setUserId] = useState(null);
-//     const [loading, setLoading] = useState(true);
-
-//     useEffect(() => {
-//         const storedUserId = localStorage.getItem('uid');
-//         const storedToken = localStorage.getItem('accessToken');
-
-//         if (storedUserId && storedToken) {
-//             setUserId(storedUserId);
-//             setIsAuthenticated(true);
-//             axiosInstance.defaults.headers['x-client-id'] = storedUserId;
-//             axiosInstance.defaults.headers['Authorization'] = storedToken;
-//         }
-//         setLoading(false);
-//     }, []);
-
-//     const login = async (email, password) => {
-//         try {
-//             const response = await axiosInstance.post('/signin', { email, password }).then(res => {
-//                 return res.data.data;
-//             })
-
-//             const accessToken = response.tokens;
-//             const user = response.user
-//             localStorage.setItem('accessToken', accessToken.accessToken);
-//             localStorage.setItem('uid', user.id);
-//             setUserId(user.id);
-//             setIsAuthenticated(true);
-//             axiosInstance.defaults.headers['x-client-id'] = user.id;
-//             axiosInstance.defaults.headers['Authorization'] = accessToken;
-//             return true;
-//         } catch (error) {
-//             console.error('Login failed', error);
-//             return false;
-//         }
-//     };
-
-//     const logout = () => {
-//         localStorage.removeItem('accessToken');
-//         localStorage.removeItem('uid');
-//         setIsAuthenticated(false);
-//         setUserId(null);
-//         delete axiosInstance.defaults.headers['x-client-id'];
-//         delete axiosInstance.defaults.headers['Authorization'];
-//     };
-
-//     return { isAuthenticated, userId, loading, login, logout };
-// }
-
-// export default useAuth;
-
 'use client'
 
 import React, { useState, useEffect } from 'react';
 import { axiosInstance } from '../configs/axios.config';
+import { useRouter } from 'next/navigation';
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userId, setUserId] = useState(null);
+    const [uid, setUid] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {   
+    const router = useRouter();
+    const redirectToLogin = () => {
+        router.push('/login');
+    };
+
+    useEffect(() => {
         const storedUserId = localStorage.getItem('uid');
         const storedAccessToken = localStorage.getItem('accessToken');
         const storedRefreshToken = localStorage.getItem('refreshToken');
 
         if (storedUserId && storedAccessToken && storedRefreshToken) {
-            setUserId(storedUserId);
+            setUid(storedUserId);
             setIsAuthenticated(true);
             setupAxiosInterceptors();
         }
@@ -119,17 +66,17 @@ const useAuth = () => {
     const login = async (email, password) => {
         try {
             const response = await axiosInstance.post('/signin', { email, password });
-            const { tokens,user } = response.data.data;
-            
+            const { tokens, user } = response.data.data;
+
             localStorage.setItem('accessToken', tokens.accessToken);
             localStorage.setItem('refreshToken', tokens.refreshToken);
             localStorage.setItem('uid', user.id);
-            
-            setUserId(user.id);
+
+            setUid(user.id);
             setIsAuthenticated(true);
-            
+
             setupAxiosInterceptors();
-            
+
             return true;
         } catch (error) {
             console.error('Login failed', error);
@@ -142,12 +89,13 @@ const useAuth = () => {
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('uid');
         setIsAuthenticated(false);
-        setUserId(null);
+        setUid(null);
         delete axiosInstance.defaults.headers['x-client-id'];
         delete axiosInstance.defaults.headers['Authorization'];
+        redirectToLogin();
     };
 
-    return { isAuthenticated, userId, loading, login, logout };
+    return { isAuthenticated, uid, loading, login, logout };
 }
 
 export default useAuth;
