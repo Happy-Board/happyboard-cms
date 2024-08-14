@@ -43,7 +43,6 @@ export const useIdeaData = (page, ideaId) => {
 
         loadIdea();
     }, [uid, isAuthenticated, page, ideaId]);
-// }, []);
 
 
     return { ideas, loading };

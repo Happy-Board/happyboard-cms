@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useAuth from '@/lib/auth';
-import { getAPIActiveUser, getAPIPublishIdea } from '@/services/utils';
+import { putAPIActiveUser, postAPIPublishIdea } from '@/services/utils';
 
 export const usePublishIdea = () => {
     const { uid, isAuthenticated } = useAuth();
@@ -11,7 +11,7 @@ export const usePublishIdea = () => {
         if (isAuthenticated && uid) {
             setLoading(true);
             try {
-                const res = await getAPIPublishIdea(ideaId, uid);
+                const res = await postAPIPublishIdea(ideaId, uid);
                 setIsSuccess(res);
             } catch (error) {
                 console.error('Failed to unpublish idea:', error);
@@ -26,28 +26,7 @@ export const usePublishIdea = () => {
     return { loading, isSuccess, publishIdea }
 };
 
-// export const useActiveUser = () => {
-//     const { uid, isAuthenticated } = useAuth();
-//     const [loading, setLoading] = useState(true);
-//     const [isSuccess, setIsSuccess] = useState(false);
 
-//     const activeUser = async (userId) => {
-//         if (isAuthenticated && userId) {
-//             setLoading(true);
-//             try {
-//                 const res = await getAPIActiveUser(userId, uid);
-//                 setIsSuccess(res);
-//             } catch (err) {
-//                 console.log(err);
-//                 setIsSuccess(false);
-//             } finally {
-//                 setLoading(false);
-//             }
-//         }
-//     };
-
-//     return { loading, isSuccess, activeUser }
-// }
 export const useActiveUser = () => {
     const { uid, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
@@ -57,7 +36,7 @@ export const useActiveUser = () => {
         if (isAuthenticated && uid) {
             setLoading(true);
             try {
-                const success = await getAPIActiveUser(userId, uid);
+                const success = await putAPIActiveUser(userId, uid);
                 setIsSuccess(success);
             } catch (err) {
                 console.error(err);

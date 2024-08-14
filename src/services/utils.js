@@ -16,7 +16,6 @@ export const getAPIUsers = async (page, uid) => {
 }
 export const getAPIUser = async (userId, uid) => {
     let result = null;
-    // await axiosInstance.get(`/users/${userId}`,userId,uid)
     await axiosInstance.get(`/users/${userId}`, uid)
         .then(res => {
             if (res.data.status !== 200) {
@@ -53,7 +52,7 @@ export const getAPIIdea = async (ideaId, uid) => {
         .catch(err => console.log(err));
     return result;
 }
-export const getAPIUnpublishIdea = async (ideaId, uid) => {
+export const postAPIUnpublishIdea = async (ideaId, uid) => {
     await axiosInstance.post(`ideas/${ideaId}/unpublish`, uid)
         .then(res => {
             if (res.data.status !== 200) {
@@ -63,7 +62,7 @@ export const getAPIUnpublishIdea = async (ideaId, uid) => {
             }
         })
 }
-export const getAPIPublishIdea = async (ideaId, uid) => {
+export const postAPIPublishIdea = async (ideaId, uid) => {
     await axiosInstance.post(`ideas/${ideaId}/publish`, uid)
         .then(res => {
             if (res.data.status !== 200) {
@@ -73,7 +72,7 @@ export const getAPIPublishIdea = async (ideaId, uid) => {
             }
         })
 }
-export const getAPIActiveUser = async (userId, uid) => {
+export const putAPIActiveUser = async (userId, uid) => {
     try {
         const res = await axiosInstance.put(`users/${userId}/status`, {
             status: 'active'
@@ -89,7 +88,7 @@ export const getAPIActiveUser = async (userId, uid) => {
         throw error;
     }
 }
-export const getAPIBanUser = async (userId, uid) => {
+export const putAPIBanUser = async (userId, uid) => {
     try {
         const res = await axiosInstance.put(`users/${userId}/status`, {
             userId,
@@ -106,13 +105,16 @@ export const getAPIBanUser = async (userId, uid) => {
         throw error;
     }
 }
-export const getAPICats = async (uid) => {
-    let result = null;
+export const getAPICategories = async (uid) => {
     try {
-        const res = await axiosInstance.get(`/categories`);
-        
+        const res = await axiosInstance.get(`/categories`,uid);
+        if (res.data.status !== 200) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.data
 
     }catch(err) {
         console.log(err);
     }
 }
+

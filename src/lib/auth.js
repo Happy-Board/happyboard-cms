@@ -14,6 +14,8 @@ const useAuth = () => {
         router.push('/login');
     };
 
+    
+
     useEffect(() => {
         const storedUserId = localStorage.getItem('uid');
         const storedAccessToken = localStorage.getItem('accessToken');
@@ -23,6 +25,8 @@ const useAuth = () => {
             setUid(storedUserId);
             setIsAuthenticated(true);
             setupAxiosInterceptors();
+        }else{
+            redirectToLogin();
         }
         setLoading(false);
     }, []);

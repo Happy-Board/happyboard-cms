@@ -113,7 +113,7 @@ const UsersPage = ({ searchParams }) => {
                                     </button>
                                     <button className={`status ${styles.block}`}
                                         title='Ban'
-                                        disabled={user.status == 'block'}
+                                        disabled={user.status == 'block'||user.id==1}
                                         onClick={() => {
                                             handleBan(user.id)
                                             window.location.reload();

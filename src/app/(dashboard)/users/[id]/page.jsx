@@ -26,9 +26,13 @@ const SigleUserPage = () => {
             setUser(initialUser);
             setRole(initialUser.roles.name);
             setStatus(initialUser.status);
+        } else if (initialUser && initialUser.roles == null) {
+            setUser(initialUser);
+            setRole('No Role');
+            setStatus(initialUser.status);
         }
     }, [initialUser]);
-
+    console.log(user);
     if (loading || !user?.roles) {
         return <div className={styles.container}>
             <div className={styles.infoContainer} >
@@ -43,6 +47,7 @@ const SigleUserPage = () => {
         </div>;
     }
 
+
     const handleActive = async () => {
         try {
             await activeUser(userId);
@@ -52,7 +57,6 @@ const SigleUserPage = () => {
             console.error("Error activating user:", error);
         }
     }
-
     const handleBan = async () => {
         try {
             await banUser(userId);
@@ -74,7 +78,6 @@ const SigleUserPage = () => {
             console.error("Error updating user:", error);
         }
     }
-    
     return (
         <div className={styles.container}>
             <div className={styles.infoContainer} >
@@ -96,6 +99,7 @@ const SigleUserPage = () => {
                         id="isAdmin"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
+                        disabled={user.id == 1}
                     >
                         <option value="User">User</option>
                         <option value="Admin">Admin</option>
@@ -113,6 +117,7 @@ const SigleUserPage = () => {
                                 handleBan();
                             }
                         }}
+                        disabled={user.id == 1}
                     >
                         <option value="active" >Active</option>
                         <option value="block" >Block</option>
