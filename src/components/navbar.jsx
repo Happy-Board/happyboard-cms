@@ -1,6 +1,6 @@
 'use client'
 import { usePathname } from 'next/navigation';
-import styles from '../styles/navbar.module.css'
+import styles from '@/styles/navbar.module.css'
 import { MdPublic, MdSearch } from 'react-icons/md';
 
 const Navbar = () => {

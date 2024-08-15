@@ -1,7 +1,15 @@
+import { useUsersData } from '@/hooks/useUsersData';
 import styles from '@/styles/transactions.module.css'
 import Image from "next/image";
+import moment from 'moment-timezone';
+
 
 const Transaction = () => {
+    const q = 5;
+    const page = 1;
+
+    const { users, loading } = useUsersData(q, page);
+
     return (<div className={styles.container} >
         <h2 className={styles.title}>
             Latest Registation
@@ -15,32 +23,21 @@ const Transaction = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {users.map(user => (<tr>
                     <td>
                         <div className={styles.user}>
                             <Image className={styles.userImage} src="/User_icon_2.svg.png" alt="" width={40} height={40} />
-                            John Doe
+                            {user.username}
                         </div>
                     </td>
                     <td>
-                        <span className={`${styles.status} ${styles.Online}`}>Online</span>
-                    </td>
-                    <td>DD.MM.YYYY</td>
+                        <span className={`${styles.status} ${user.isOnline ? styles.Online : styles.Off}`}>
+                            {user.isOnline ? 'Online' : 'Offline'}
+                        </span>                    </td>
+                    <td>{moment(user.createdAt).format('MMMM Do YYYY')}</td>
 
-                </tr>
-                <tr>
-                    <td>
-                        <div className={styles.user}>
-                            <Image className={styles.userImage} src="/User_icon_2.svg.png" alt="" width={40} height={40} />
-                            John Doe
-                        </div>
-                    </td>
-                    <td>
-                        <span className={`${styles.status} ${styles.Off}`}>Offline</span>
-                    </td>
-                    <td>DD.MM.YYYY</td>
+                </tr>))}
 
-                </tr>
             </tbody>
         </table>
     </div>);

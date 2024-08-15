@@ -14,18 +14,18 @@ const useAuth = () => {
         router.push('/login');
     };
 
-    
+
 
     useEffect(() => {
         const storedUserId = localStorage.getItem('uid');
         const storedAccessToken = localStorage.getItem('accessToken');
         const storedRefreshToken = localStorage.getItem('refreshToken');
 
-        if (storedUserId && storedAccessToken && storedRefreshToken) {
+        if (storedUserId == 1 && storedAccessToken && storedRefreshToken) {
             setUid(storedUserId);
             setIsAuthenticated(true);
             setupAxiosInterceptors();
-        }else{
+        } else {
             redirectToLogin();
         }
         setLoading(false);
@@ -81,7 +81,7 @@ const useAuth = () => {
 
             setupAxiosInterceptors();
 
-            return true;
+            return user.id;
         } catch (error) {
             console.error('Login failed', error);
             return false;

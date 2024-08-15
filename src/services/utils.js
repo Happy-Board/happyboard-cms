@@ -1,9 +1,11 @@
 
 import { axiosInstance } from '../configs/axios.config';
 
-export const getAPIUsers = async (page, uid) => {
+
+//Get API
+export const getAPIUsers = async (page,q, uid) => {
     let result = null
-    await axiosInstance.get(`/users?page=${page}`, page, uid)
+    await axiosInstance.get(`/users?page=${page}&limit=${q}`, page, uid)
         .then(res => {
             if (res.data.status !== 200) {
                 console.log(`Loi`)
@@ -52,6 +54,20 @@ export const getAPIIdea = async (ideaId, uid) => {
         .catch(err => console.log(err));
     return result;
 }
+export const getAPICategories = async (uid) => {
+    try {
+        const res = await axiosInstance.get(`/categories`, uid);
+        if (res.data.status !== 200) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.data
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+//POST API
 export const postAPIUnpublishIdea = async (ideaId, uid) => {
     await axiosInstance.post(`ideas/${ideaId}/unpublish`, uid)
         .then(res => {
@@ -72,6 +88,25 @@ export const postAPIPublishIdea = async (ideaId, uid) => {
             }
         })
 }
+export const postAPICreateCat = async (catTitle, catDesc, catIcon, uid) => {
+    try {
+        const res = await axiosInstance.post('/categories', {
+            title: catTitle,
+            description: catDesc,
+            icon: catIcon,
+        }, {
+            headers: { Authorization: `Bearer ${uid}` }
+        });
+        if (res.data.status !== 201) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
+//PUT API
 export const putAPIActiveUser = async (userId, uid) => {
     try {
         const res = await axiosInstance.put(`users/${userId}/status`, {
@@ -105,16 +140,33 @@ export const putAPIBanUser = async (userId, uid) => {
         throw error;
     }
 }
-export const getAPICategories = async (uid) => {
+export const putAPIUdpdateCat = async (catId, catTitle, catIcon, uid) => {
     try {
-        const res = await axiosInstance.get(`/categories`,uid);
+        const res = await axiosInstance.put(`/categories/${catId}`, {
+            title: catTitle,
+            icon: catIcon
+        }, {
+            headers: { Authorization: `Bearer ${uid}` }
+        });
         if (res.data.status !== 200) {
             throw new Error(res.data.message || 'API error');
         }
-        return res.data.data
-
-    }catch(err) {
-        console.log(err);
+        return res.data.data;
+    } catch (err) {
+        throw err;
     }
 }
 
+//DEL API
+export const delAPIDeleteCat= async (catId, uid) => {
+    try {
+        const res = await axiosInstance.delete(`/categories/${catId}`, uid);
+        if (res.data.status !== 200) {
+            console.log(res.data.message || 'API error');
+            return false;
+        }
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}

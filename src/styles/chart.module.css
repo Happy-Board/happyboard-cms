@@ -11,22 +11,10 @@
     color: var(--text);
     margin-bottom: 20px;
   }
-  .chartContainer {
-    position: relative; /* Necessary for absolute positioning of the overlay */
+.chartContainer {
+    position: absolute; /* Necessary for absolute positioning of the overlay */
   }
   
-  .blurOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--bgSoft); /* Semi-transparent white */
-    backdrop-filter: blur(5px); /* Adjust blur radius as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
   .notSupported {
     font-size: 20px;

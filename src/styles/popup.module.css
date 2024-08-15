@@ -19,7 +19,6 @@
     width: 40px;
 
 }
-
 .input {
     background-color: var(--bgSofter);
     color: var(--text);
@@ -36,4 +35,11 @@
 .catName {
     font-weight: bold;
     color: var(--textSoft);
+}
+
+.select{
+    background-color: var(--bgSofter);
+}
+.menuItem{
+    color: var(--text);
 }

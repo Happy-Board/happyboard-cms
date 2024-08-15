@@ -1,3 +1,5 @@
+'use client'
+
 import styles from "../styles/sidebar.module.css";
 import {
     MdDashboard,
@@ -8,6 +10,8 @@ import {
 } from "react-icons/md";
 import Image from 'next/image'
 import MenuLink from "./ui/menu-link";
+import useAuth from "../lib/auth";
+import { useRouter } from "next/navigation";
 
 const menuItems = [{
     title: "Pages",
@@ -72,13 +76,16 @@ const menuItems = [{
 ];
 
 const Sidebar = () => {
+    
+    const { logout } = useAuth();
+
     return (
         <div className={styles.container}>
             <div className={styles.user}>
                 <Image className={styles.userImage} src='/User_icon_2.svg.png' alt="" width="50" height="50" />
                 <div className={styles.userDetail}>
-                    <span className={styles.username}>Astersa</span>
-                    <span className={styles.userTitle}>Admin</span>
+                    <span className={styles.username}>Administrator</span>
+                    <span className={styles.userTitle}>Super-Admin</span>
                 </div>
             </div>
             <ul className={styles.list}>
@@ -91,7 +98,7 @@ const Sidebar = () => {
                     </li>
                 ))}
             </ul>
-            <div className={styles.logout}>
+            <div className={styles.logout} onClick={logout}>
                 <MdLogout />
                 Logout
             </div>

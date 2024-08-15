@@ -2,7 +2,7 @@ import { getAPIUsers, getAPIIdeas, getAPIUser, getAPICategories } from '@/servic
 
 export const fetchUsers = async (userId, q, page) => {
     try {
-        const User = await getAPIUsers(page, userId);
+        const User = await getAPIUsers(page,q, userId);
         const count = User.total;
         const users = User.users;
         return { users, count };

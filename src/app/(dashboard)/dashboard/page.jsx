@@ -8,14 +8,16 @@ import Transaction from '@/components/transactions';
 import Chart from '@/components/ui/chart';
 import { useUsersData } from '@/hooks/useUsersData';
 import { useIdeasData } from '@/hooks/useIdeasData';
+import { useCatsData } from '@/hooks/Categories/useCatsData';
 
 const Dashboard = ({ searchParams }) => {
 
-    const q = searchParams?.q || "";
+    const q =1;
     const page = searchParams?.page || 1;
 
-    const { users, count: usersCount, loading: usersLoading } = useUsersData(q, page);
-    const { ideas, count: ideasCount, loading: ideasLoading } = useIdeasData(q, page);
+    const { count: usersCount } = useUsersData(q, page);
+    const { count: ideasCount } = useIdeasData(q, page);
+    const { count: catsCount} = useCatsData();
 
 
     return (
@@ -24,7 +26,7 @@ const Dashboard = ({ searchParams }) => {
                 <div className={styles.cards}>
                     <Card title='Total Users' number={usersCount || `...`} />
                     <Card title='Total Ideas' number={ideasCount || `...`} />
-                    <Card title='Total Categories' number='6' />
+                    <Card title='Total Categories' number={catsCount || `...`} />
                 </div>
                 <Transaction />
                 <Chart />

@@ -9,7 +9,6 @@ export const useCatsData = () => {
     const [count, setCount] = useState(0);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         const loadCats = async () => {
             if (isAuthenticated && uid) {

@@ -19,7 +19,7 @@ import { useState } from 'react';
 const UsersPage = ({ searchParams }) => {
 
 
-    const q = searchParams?.q || "";
+    const q = 9;
     const page = searchParams?.page || 1;
 
     const { users: initialUsers, count, loading } = useUsersData(q, page);

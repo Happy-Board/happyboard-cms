@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useAuth from '@/lib/auth';
 import { putAPIBanUser, postAPIUnpublishIdea } from '@/services/utils';
 

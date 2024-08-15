@@ -21,11 +21,11 @@ const LoginForm = () => {
     setError('');
     try {
       const success = await login(formData.email, formData.password);
-      if (success) {
+      if (success == 1) {
         console.log('Success: Sign in successfully!');
         router.push('/dashboard');
-      } else {
-        setError('Login failed. Please check your credentials and try again.');
+      }else{
+        setError('Login failed. Please use Admin account!!!');
       }
     } catch (error) {
       console.error('Error:', error);
