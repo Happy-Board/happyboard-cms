@@ -23,10 +23,10 @@ const Transaction = () => {
                 </tr>
             </thead>
             <tbody>
-                {users.map(user => (<tr>
+                {users.map(user => (<tr key={user.id}>
                     <td>
                         <div className={styles.user}>
-                            <Image className={styles.userImage} src="/User_icon_2.svg.png" alt="" width={40} height={40} />
+                            <Image className={styles.userImage} src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} alt="" width={40} height={40} />
                             {user.username}
                         </div>
                     </td>
