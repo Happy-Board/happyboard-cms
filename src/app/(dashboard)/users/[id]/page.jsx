@@ -7,24 +7,29 @@ import { useActiveUser } from '@/hooks/Publish/publish';
 import { useBanUser } from '@/hooks/Publish/unPublish';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useUpdateRole } from '@/hooks/useUpdateRole'
 
 
 const SigleUserPage = () => {
 
     const router = useRouter();
     const userId = usePathname().split("/").pop();
-    const { user: initialUser, loading } = useUserData(userId);
+    const { user: initialUser, loading: useLoading } = useUserData(userId);
     const { activeUser } = useActiveUser();
     const { banUser } = useBanUser();
+    const { updateRole } = useUpdateRole();
 
     const [user, setUser] = useState(null);
     const [role, setRole] = useState(user?.roles?.name || '');
     const [status, setStatus] = useState(user?.status || '');
+    const [loading, setLoading] = useState(false);
+    const [roleId, setRoleId] = useState(role);
 
     useEffect(() => {
         if (initialUser && initialUser.roles) {
             setUser(initialUser);
             setRole(initialUser.roles.name);
+            setRoleId(initialUser.roles.id);
             setStatus(initialUser.status);
         } else if (initialUser && initialUser.roles == null) {
             setUser(initialUser);
@@ -33,7 +38,7 @@ const SigleUserPage = () => {
         }
     }, [initialUser]);
     console.log(user);
-    if (loading || !user?.roles) {
+    if (useLoading || !user?.roles) {
         return <div className={styles.container}>
             <div className={styles.infoContainer} >
                 <div className={styles.imgContainer}>
@@ -66,11 +71,31 @@ const SigleUserPage = () => {
             console.error("Error banning user:", error);
         }
     }
+    const handleRole = async () => {
+        if (user.roles?.name !== role) {
+            try {
+                setLoading(true);
+                const success = await updateRole(userId, roleId);
+                if (success) {
+                    setUser(prevUser => ({ ...prevUser, roles: { name: role } }));
+                    console.log("Role updated successfully");
+                } else {
+                    console.error("Failed to update role");
+                }
+            } catch (err) {
+                console.error("Error updating role:", err);
+                throw err;
+            } finally {
+                setLoading(false);
+            }
+        }
+    }
 
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
             console.log("Updating user:", { userId, role, status });
+            await handleRole();
             setTimeout(() => {
                 router.push('/users');
             }, 2000);
@@ -82,7 +107,7 @@ const SigleUserPage = () => {
         <div className={styles.container}>
             <div className={styles.infoContainer} >
                 <div className={styles.imgContainer}>
-                    <Image alt="" fill />
+                    <Image  src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}alt="User Image" fill />
                 </div>
                 {user.username}
             </div>
@@ -94,16 +119,25 @@ const SigleUserPage = () => {
                     <label>Email</label>
                     <div type="email" className={styles.email} > {user.email} </div>
                     <label>Role</label>
-                    <select
+                    {/* <select
                         name="isAdmin"
                         id="isAdmin"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                         disabled={user.id == 1}
+                    > */}<select
+                        name="isAdmin"
+                        id="isAdmin"
+                        value={roleId}
+                        onChange={(e) => {
+                            setRoleId(Number(e.target.value));
+                            setRole(e.target.options[e.target.selectedIndex].text);
+                        }}
+                        disabled={user.id == 1}
                     >
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Super-Admin">Super-Admin</option>
+                        <option value="3">User</option>
+                        <option value="2">Admin</option>
+                        <option value="1" disabled>Super-Admin</option>
                     </select>
                     <label>Status</label>
                     <select

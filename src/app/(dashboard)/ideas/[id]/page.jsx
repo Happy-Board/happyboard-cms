@@ -33,26 +33,20 @@ const SigleIdeaPage = () => {
 
     if (!idea) { return <div className={styles.container}><div className={styles.formContainer} /></div> }
 
-    const handleBack = () => {
-        router.back();
-    }
-    const handleUnpublish = async (id) => {
+    const handleAction = async (action, id) => {
         try {
-            await unpublishIdea(id);
-        } catch (error) {
-            console.error('Failed to unpublish idea:', error);
-        }
-    }
-    const handlePublish = async (id) => {
-        try {
-            await publishIdea(id);
+            if (action === 'publish') {
+                await publishIdea(id);
+            } else if (action === 'unpublish') {
+                await unpublishIdea(id);
+            }
 
+            router.push('/ideas');
         } catch (error) {
-            console.error('Failed to publish idea:', error);
+            console.error(`Failed to ${action} idea:`, error);
         }
     }
 
-    console.log(idea.isPublished);
 
     return (
         <div className={styles.container}>
@@ -67,14 +61,14 @@ const SigleIdeaPage = () => {
                     <button
                         className={`status ${styles.approve}`}
                         title='Release'
-                        onClick={() => { handlePublish(idea.id); handleBack() }}
-                        disabled={idea.isPublished == true}
+                        onClick={() => handleAction('publish', idea.id)}
+                        disabled={idea.isPublished === true}
                     > Release</button>
                     <button
                         className={`status ${styles.unpublish}`}
                         title='Unpublish'
-                        onClick={() => { handleUnpublish(idea.id); handleBack() }}
-                        disabled={idea.isPublished == false}
+                        onClick={() => handleAction('unpublish', idea.id)}
+                        disabled={idea.isPublished === false}
                     >Unpublish</button>
                 </div>
             </div>

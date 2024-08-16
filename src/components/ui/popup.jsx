@@ -48,7 +48,6 @@ const PopUp = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false)
-        window.location.reload();
     };
 
     const { loadCreate } = useCreateCat();
@@ -134,8 +133,6 @@ const ExistPopUp = ({ catName, catIcon, catId }) => {
         loadUpdate(catId, catTitle, selectedIcon);
     };
 
-
-
     return (<div>
         <button className={`${styles.status} ${styles.fix}`} title='Fix' onClick={handleOpen}><MdBuild /></button>
         <Modal
@@ -174,7 +171,7 @@ const ExistPopUp = ({ catName, catIcon, catId }) => {
                         </MenuItem>
                     ))}
                 </Select>
-                <button onClick={() => {
+                <button className={styles.submit} onClick={() => {
                     handleSubmit();
                     window.location.reload();
                 }} >

@@ -88,7 +88,7 @@ const IdeaPage = ({ searchParams }) => {
                             </td>
                             <td>{idea.User.email}</td>
                             <td>{moment(idea.createdAt).format('MMMM Do YYYY')}</td>
-                            <td>{idea.Category.title}</td>
+                            <td>{idea.Category?.title|| 'No Cat'}</td>
                             <td >
                                 <span className={`status ${idea.isPublished ? styles.released : styles.pending}`}>
                                     {idea.isPublished ? 'Released' : 'Pending'}

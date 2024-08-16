@@ -87,7 +87,7 @@ const UsersPage = ({ searchParams }) => {
                         <tr key={user.email}>
                             <td>
                                 <div className={styles.user}>
-                                    <Image src="/User_icon_2.svg.png" className={styles.userImage} alt="" width={40} height={40} />
+                                    <Image src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} className={styles.userImage} alt="" width={40} height={40} />
                                     {user.username}
                                 </div>
                             </td>

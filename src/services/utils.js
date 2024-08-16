@@ -3,7 +3,7 @@ import { axiosInstance } from '../configs/axios.config';
 
 
 //Get API
-export const getAPIUsers = async (page,q, uid) => {
+export const getAPIUsers = async (page, q, uid) => {
     let result = null
     await axiosInstance.get(`/users?page=${page}&limit=${q}`, page, uid)
         .then(res => {
@@ -156,9 +156,25 @@ export const putAPIUdpdateCat = async (catId, catTitle, catIcon, uid) => {
         throw err;
     }
 }
+export const putAPIUpdateRole = async (userId, roleId, uid) => {
+    try {
+        const res = await axiosInstance.put(`/users/${userId}/role`, {
+            roleId
+        }, {
+            headers: { Authorization: `Bearer ${uid}` }
+        });
+        if (res.data.data !== 200) {
+            console.log(res.data.message || 'API error');
+            return false;
+        }
+        return true;
+    } catch (err) {
+        throw err;
+    }
+}
 
 //DEL API
-export const delAPIDeleteCat= async (catId, uid) => {
+export const delAPIDeleteCat = async (catId, uid) => {
     try {
         const res = await axiosInstance.delete(`/categories/${catId}`, uid);
         if (res.data.status !== 200) {
