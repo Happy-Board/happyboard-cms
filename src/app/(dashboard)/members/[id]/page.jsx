@@ -1,6 +1,5 @@
 'use client'
 import styles from "@/styles/singleUser.module.css";
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useUserData } from '@/hooks/useUsersData';
 import { useActiveUser } from '@/hooks/Publish/publish';
@@ -107,7 +106,7 @@ const SigleUserPage = () => {
         <div className={styles.container}>
             <div className={styles.infoContainer} >
                 <div className={styles.imgContainer}>
-                    <Image  src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}alt="User Image" fill />
+                    <img  src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}alt="User Image" fill />
                 </div>
                 {user.username}
             </div>

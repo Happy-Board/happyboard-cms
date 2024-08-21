@@ -1,5 +1,4 @@
 import moment from 'moment-timezone';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import {
@@ -64,7 +63,7 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
         <tr key={user.email}>
             <td>
                 <div className={styles.user}>
-                    <Image src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} className={styles.userImage} alt="" width={40} height={40} />
+                    <img src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} className={styles.userImage} alt="" width={40} height={40} />
                     {user.username}
                 </div>
             </td>

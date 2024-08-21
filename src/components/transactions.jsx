@@ -1,6 +1,5 @@
 import { useUsersData } from '@/hooks/useUsersData';
 import styles from '@/styles/transactions.module.css'
-import Image from "next/image";
 import moment from 'moment-timezone';
 
 
@@ -26,7 +25,7 @@ const Transaction = () => {
                 {users.map(user => (<tr key={user.id}>
                     <td>
                         <div className={styles.user}>
-                            <Image className={styles.userImage} src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} alt="" width={40} height={40} />
+                            <img className={styles.userImage} src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"} alt="" width={40} height={40} />
                             {user.username}
                         </div>
                     </td>

@@ -8,7 +8,6 @@ import {
     MdArticle,
     MdVerticalSplit,
 } from "react-icons/md";
-import Image from 'next/image'
 import MenuLink from "./ui/menu-link";
 import useAuth from "../lib/auth";
 
@@ -48,7 +47,7 @@ const Sidebar = () => {
     return (
         <div className={styles.container}>
             <div className={styles.user}>
-                <Image className={styles.userImage} src='/User_icon_2.svg.png' alt="" width="50" height="50" />
+                <img className={styles.userImage} src='/User_icon_2.svg.png' alt="" width="50" height="50" />
                 <div className={styles.userDetail}>
                     <span className={styles.username}>Administrator</span>
                     <span className={styles.userTitle}>Super-Admin</span>

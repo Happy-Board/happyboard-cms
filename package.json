@@ -29,6 +29,7 @@
     "react-icons": "4.11",
     "react-toastify": "^10.0.5",
     "recharts": "^2.9.0",
+    "sharp": "^0.33.5",
     "timers-promises": "^1.0.1",
     "use-debounce": "^10.0.2"
   },
