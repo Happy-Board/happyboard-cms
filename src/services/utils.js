@@ -30,7 +30,7 @@ export const getAPIUser = async (userId, uid) => {
 }
 export const getAPIIdeas = async (page, uid) => {
     let result = null
-    await axiosInstance.get(`/ideas/all?page=${page}&limit=10`, page, uid)
+    await axiosInstance.get(`/ideas/all?page=${page}&limit=8`, page, uid)
         .then(res => {
             if (res.data.status !== 200) {
                 console.log(`Loi`)

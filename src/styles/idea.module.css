@@ -11,14 +11,22 @@
 
 .table thead {
     font-weight: bold;
+    color: var(--textSoft);
+    font-size:larger;
 }
-
+.table tbody{
+    color: var(--textSofter);
+    font-size: medium;
+}
 
 .table td {
     max-width: 10px;
     padding: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-bottom: 1px solid var(--bgSofter);
+    border-right: 2px solid var(--bgSofter);
+    
 }
 
 .title {
@@ -36,10 +44,14 @@
     padding: 10px;
 }
 
+.buttons button {
+    width: 50px;
+    border-radius: 15px;
+
+}
+
 .view {
     background-color: teal;
-
-
 }
 
 .approve {
@@ -75,3 +87,4 @@
     color: rgb(247, 247, 131);
     font-weight: bold;
 }
+

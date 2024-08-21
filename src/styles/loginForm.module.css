@@ -25,7 +25,6 @@
     padding: 30px;
     background-color: teal;
     color: var(--text);
-
     cursor: pointer;
     border-radius: 5px;
   }

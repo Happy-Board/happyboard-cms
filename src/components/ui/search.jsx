@@ -2,10 +2,14 @@
 
 import styles from '@/styles/search.module.css';
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { useDebouncedCallback } from "use-debounce";
 
-const Search = ({placeholder}) => {
+const Search = ({ placeholder }) => {
+
+
+
     const searchParams = useSearchParams();
     const { replace } = useRouter();
     const pathname = usePathname();
@@ -22,10 +26,13 @@ const Search = ({placeholder}) => {
         }
         replace(`${pathname}?${params}`);
     }, 300);
-    return (<div className={styles.container}>
-        <MdSearch />
-        <input className={styles.input} type="text" placeholder={placeholder} onChange={handleSearch} />
-    </div>
+    return (
+        <Suspense>
+            <div className={styles.container}>
+                <MdSearch />
+                <input className={styles.input} type="text" placeholder={placeholder} onChange={handleSearch} />
+            </div>
+        </Suspense>
     );
 }
 

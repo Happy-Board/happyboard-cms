@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev:production": "dotenv next"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -26,7 +27,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "4.11",
+    "react-toastify": "^10.0.5",
     "recharts": "^2.9.0",
+    "timers-promises": "^1.0.1",
     "use-debounce": "^10.0.2"
   },
   "devDependencies": {

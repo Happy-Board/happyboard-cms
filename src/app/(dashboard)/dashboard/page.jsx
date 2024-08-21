@@ -9,6 +9,7 @@ import Chart from '@/components/ui/chart';
 import { useUsersData } from '@/hooks/useUsersData';
 import { useIdeasData } from '@/hooks/useIdeasData';
 import { useCatsData } from '@/hooks/Categories/useCatsData';
+import { Suspense } from 'react';
 
 const Dashboard = ({ searchParams }) => {
 
@@ -21,10 +22,11 @@ const Dashboard = ({ searchParams }) => {
 
 
     return (
+        <Suspense>
         <div className={styles.wrapper}>
             <div className={styles.main}>
                 <div className={styles.cards}>
-                    <Card title='Total Users' number={usersCount || `...`} />
+                    <Card title='Total Members' number={usersCount || `...`} />
                     <Card title='Total Ideas' number={ideasCount || `...`} />
                     <Card title='Total Categories' number={catsCount || `...`} />
                 </div>
@@ -32,6 +34,7 @@ const Dashboard = ({ searchParams }) => {
                 <Chart />
             </div>
         </div>
+        </Suspense>
     );
 }
 

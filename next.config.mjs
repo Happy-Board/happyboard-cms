@@ -15,6 +15,10 @@ const nextConfig = {
             'res.cloudinary.com',
         ],
     },
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+    },
+
 };
 
 export default nextConfig;

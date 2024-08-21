@@ -97,7 +97,7 @@ const SigleUserPage = () => {
             console.log("Updating user:", { userId, role, status });
             await handleRole();
             setTimeout(() => {
-                router.push('/users');
+                router.push('/members');
             }, 2000);
         } catch (error) {
             console.error("Error updating user:", error);

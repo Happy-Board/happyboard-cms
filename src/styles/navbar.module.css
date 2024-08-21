@@ -11,29 +11,14 @@
     font-weight: bold;
     text-transform: capitalize;
     padding: 10px;
-
 }
 
 .menu {
     display: flex;
     align-self: center;
-    gap: 20px;
-}
-
-.search {
-    display: flex;
-    align-items: center;
     gap: 10px;
-    background-color: var(--bgSofter);
-    padding: 10px;
-    border-radius: 10px;
 }
 
-.input {
-    background-color: transparent;
-    border: none;
-    color: var(--text);
-}
 
 .input:focus {
     outline: none;
@@ -42,6 +27,25 @@
 
 .icons {
     display: flex;
-    gap: 20px;
+    align-items: center;
     padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.logout {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.icons:hover {
+    background-color: var(--bgSofter);
+}
+
+.logout:hover {
+    background-color: var(--bgSofter);
 }

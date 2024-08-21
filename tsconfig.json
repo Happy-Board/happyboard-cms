@@ -48,7 +48,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/layout.jsx"
-  ],
+, "src/components/ui/login/loginForm/loginForm.jsx"  ],
   "exclude": [
     "node_modules"
   ]

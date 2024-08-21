@@ -11,7 +11,8 @@ import {
 import Image from 'next/image'
 import MenuLink from "./ui/menu-link";
 import useAuth from "../lib/auth";
-import { useRouter } from "next/navigation";
+
+
 
 const menuItems = [{
     title: "Pages",
@@ -22,8 +23,8 @@ const menuItems = [{
             icon: <MdDashboard />,
         },
         {
-            title: "Users",
-            path: "/users",
+            title: "Members",
+            path: "/members",
             icon: <MdSupervisedUserCircle />,
         },
         {
@@ -38,41 +39,6 @@ const menuItems = [{
         },
     ],
 },
-// {
-//     title: "Analytics",
-//     list: [
-//         {
-//             title: "Revenue",
-//             path: "/dashboard/revenue",
-//             icon: <MdWork />,
-//         },
-//         {
-//             title: "Reports",
-//             path: "/dashboard/reports",
-//             icon: <MdAnalytics />,
-//         },
-//         {
-//             title: "Teams",
-//             path: "/dashboard/teams",
-//             icon: <MdPeople />,
-//         },
-//     ]
-// },
-{
-    title: "User",
-    list: [
-        // {
-        //     title: "Settings",
-        //     path: "/dashboard/settings",
-        //     icon: <MdOutlineSettings />,
-        // },
-        // {
-        //     title: "Help",
-        //     path: "/dashboard/help",
-        //     icon: <MdHelpCenter />,
-        // },
-    ]
-}
 ];
 
 const Sidebar = () => {
@@ -98,10 +64,6 @@ const Sidebar = () => {
                     </li>
                 ))}
             </ul>
-            <div className={styles.logout} onClick={logout}>
-                <MdLogout />
-                Logout
-            </div>
         </div>
     );
 };

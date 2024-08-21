@@ -1,14 +1,14 @@
 .addButton {
     padding: 10px;
     background-color: #5d57c9;
-    color: var(--text);
-    border-radius: 5px;
+    color: var(--textSofter);
+    border-radius: 15px;
     cursor: pointer;
 
 }
 
 .status {
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 5px;
     font-size: 14px;
     color: white;

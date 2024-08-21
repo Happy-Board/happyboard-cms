@@ -1,8 +1,9 @@
 'use client'
 
-
 import styles from '@/styles/pagination.module.css';
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from 'react';
+import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
 
 const Pagination = ({ count }) => {
 
@@ -24,12 +25,15 @@ const Pagination = ({ count }) => {
             : params.set("page", parseInt(page) + 1);
         replace(`${pathname}?${params}`);
     };
-    return (<div className={styles.container}>
-        <button className={styles.button} disabled={!hasPrev}
-            onClick={() => handleChangePage("prev")}>Previous</button>
-        <button className={styles.button} disabled={!hasNext}
-            onClick={() => handleChangePage("next")}>Next</button>
-    </div>);
+    return (
+        <Suspense>
+            <div className={styles.container}>
+                <button className={styles.button} disabled={!hasPrev}
+                    onClick={() => handleChangePage("prev")}><MdArrowBackIosNew /></button>
+                <button className={styles.button} disabled={!hasNext}
+                    onClick={() => handleChangePage("next")}><MdArrowForwardIos /></button>
+            </div>
+        </Suspense>);
 }
 
 export default Pagination;

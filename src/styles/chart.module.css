@@ -1,21 +1,15 @@
 .container {
-    height: 450px;
+    height: 185px;
     background-color: var(--bgSoft);
     padding: 20px;
     border-radius: 10px;
   }
   
   .title{
-    font-weight: 200;
+    font-weight: 150;
     color: var(--text);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 .chartContainer {
     position: absolute; /* Necessary for absolute positioning of the overlay */
-  }
-  
-  
-  .notSupported {
-    font-size: 20px;
-    color: var(--textSoft);
   }

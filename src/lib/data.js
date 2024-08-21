@@ -2,9 +2,9 @@ import { getAPIUsers, getAPIIdeas, getAPIUser, getAPICategories } from '@/servic
 
 export const fetchUsers = async (userId, q, page) => {
     try {
-        const User = await getAPIUsers(page,q, userId);
-        const count = User.total;
-        const users = User.users;
+        let User = await getAPIUsers(page,q, userId);
+        let count = User.total;
+        let users = User.users;
         return { users, count };
     } catch (err) {
         console.log(err);
@@ -12,9 +12,9 @@ export const fetchUsers = async (userId, q, page) => {
 };
 export const fetchIdeas = async (userId, q, page) => {
     try {
-        const Ideas = await getAPIIdeas(page, userId);
-        const count = Ideas.total;
-        const ideas = Ideas.ideas;
+        let Ideas = await getAPIIdeas(page, userId);
+        let count = Ideas.total;
+        let ideas = Ideas.ideas;
         return { ideas, count };
     } catch (err) {
         console.log(err);
@@ -22,7 +22,7 @@ export const fetchIdeas = async (userId, q, page) => {
 };
 export const fetchIdea = async (page, userId) => {
     try {
-        const ideas = await getAPIIdeas(page, userId);
+        let ideas = await getAPIIdeas(page, userId);
         return { ideas }
     } catch (err) {
         console.log(err);
@@ -30,7 +30,7 @@ export const fetchIdea = async (page, userId) => {
 };
 export const fetchUser = async (userId, uid) => {
     try {
-        const user = await getAPIUser(userId, uid);
+        let user = await getAPIUser(userId, uid);
         return user;
     } catch (err) {
         console.log(err);
@@ -38,9 +38,9 @@ export const fetchUser = async (userId, uid) => {
 }
 export const fetchCats = async (uid) => {
     try {
-        const res = await getAPICategories(uid);
-        const cats = res.categories;
-        const count = res.total;
+        let res = await getAPICategories(uid);
+        let cats = res.categories;
+        let count = res.total;
         return { cats, count }
     } catch (err) {
         console.log(err);

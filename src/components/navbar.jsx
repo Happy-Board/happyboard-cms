@@ -1,23 +1,24 @@
 'use client'
 import { usePathname } from 'next/navigation';
 import styles from '@/styles/navbar.module.css'
-import { MdPublic, MdSearch } from 'react-icons/md';
+import { MdLogout, MdPublic, MdSearch } from 'react-icons/md';
+import useAuth from '@/lib/auth';
 
 const Navbar = () => {
 
     const pathname = usePathname();
+    const { logout } = useAuth();
 
     return (<div className={styles.container}>
         <div className={styles.title}>
             {pathname.split("/").pop()}
         </div>
         <div className={styles.menu}>
-            <div className={styles.search}>
-                <MdSearch />
-                <input type='text' placeholder='Search...' className={styles.input} />
-            </div>
-            <div className={styles.icons}>
+            <div className={styles.icons} title='Change Theme'>
                 <MdPublic size={20} />
+            </div>
+            <div className={styles.logout} title='Logout' onClick={logout}>
+                <MdLogout />
             </div>
         </div>
     </div>);

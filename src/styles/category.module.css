@@ -5,25 +5,38 @@
     margin-top: 20px;
 }
 
-
-
 .table {
     width: 100%;
+}
+.top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .table thead {
     font-weight: bold;
+    color: var(--textSoft);
+    font-size: larger;
 }
 
+.table tbody {
+    color: var(--textSofter);
+    font-size: medium;
+}
 
 .table td {
     max-width: 10px;
     padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid var(--bgSofter);
+    border-right: 2px solid var(--bgSofter);
 
 }
 
 .status {
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 5px;
     font-size: 14px;
     color: white;
@@ -45,16 +58,18 @@
     gap: 10px;
 }
 
+.buttons button {
+    width: 50px;
+    border-radius: 15px;
+}
+
 .button {
     cursor: pointer;
     padding: 5px 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     color: var(--text);
     cursor: pointer;
 }
-
-
-
 
 .delete {
     background-color: red;

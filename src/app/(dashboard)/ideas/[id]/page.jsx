@@ -3,7 +3,7 @@
 import { useIdeaData } from '@/hooks/useIdeasData';
 import styles from '@/styles/singleIdea.module.css';
 import { useParams, useRouter, useSearchParams, } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useUnpublishIdea } from '@/hooks/Publish/unPublish';
 import { usePublishIdea } from '@/hooks/Publish/publish';
 
@@ -49,6 +49,7 @@ const SigleIdeaPage = () => {
 
 
     return (
+        <Suspense>
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h3 className={styles.title}>{idea.title}</h3>
@@ -56,7 +57,10 @@ const SigleIdeaPage = () => {
                     {idea.isPublished ? 'Released' : 'Pending'}
                 </span>
                 <p className={styles.author}>{idea.author}</p>
-                <p className={styles.content}>{idea.content}</p>
+                <div
+                    className={styles.content}
+                    dangerouslySetInnerHTML={{ __html: idea.content }}
+                />
                 <div className={styles.buttonContainer}>
                     <button
                         className={`status ${styles.approve}`}
@@ -73,6 +77,7 @@ const SigleIdeaPage = () => {
                 </div>
             </div>
         </div>
+        </Suspense>
     );
 }
 
