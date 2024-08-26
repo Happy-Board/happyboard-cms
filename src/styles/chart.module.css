@@ -1,8 +1,9 @@
 .container {
-    height: 185px;
+    max-height:185px;
     background-color: var(--bgSoft);
     padding: 20px;
     border-radius: 10px;
+    width: 100%;
   }
   
   .title{

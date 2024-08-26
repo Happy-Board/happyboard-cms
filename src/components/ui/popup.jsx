@@ -7,13 +7,15 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { MdAdd, MdBuild } from 'react-icons/md';
+import { MdAdd, MdAddCircle, MdBuild, MdClose } from 'react-icons/md';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import { useCreateCat } from '@/hooks/Categories/useCreateCat';
 import { useUpdateCat } from '@/hooks/Categories/useUpdateCat';
+import { Flip, toast } from 'react-toastify';
+import { IconButton } from '@mui/material';
 
 library.add(fas);
 
@@ -38,7 +40,7 @@ const iconList = ['newspaper', 'book', 'globe', 'rss', 'calendar-alt',
     'microphone', 'mobile-alt', 'lightbulb', 'bullhorn', 'flag', 'star',
     'heart', 'laptop', 'icons', 'burger', 'futbol', 'compass-drafting'];
 
-const PopUp = () => {
+const PopUp = ({ onCategoryAdded }) => {
     const [open, setOpen] = React.useState(false);
     const [selectedIcon, setSelectedIcon] = React.useState('');
     const [catTitle, setCatTitle] = React.useState('');
@@ -56,8 +58,24 @@ const PopUp = () => {
         setSelectedIcon(event.target.value);
     };
 
-    const handleSubmit = () => {
-        loadCreate(catTitle, catDesc, selectedIcon);
+    const handleSubmit = async () => {
+        await loadCreate(catTitle, catDesc, selectedIcon);
+        toast.success("New category is created successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Flip,
+            icon: ({ theme, type }) => <MdAddCircle style={{ color: 'green' }} />,
+        });
+        handleClose();
+        if (onCategoryAdded) {
+            onCategoryAdded();
+        }
     };
 
 
@@ -70,7 +88,23 @@ const PopUp = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={{
+                    ...style,
+                    position: 'relative'
+                }}>
+
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                            color: (theme) => theme.palette.grey[500],
+                        }}
+                    >
+                        <MdClose />
+                    </IconButton>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Create New
                     </Typography>
@@ -105,8 +139,7 @@ const PopUp = () => {
                     </Select>
                     <button onClick={() => {
                         handleSubmit();
-                        window.location.reload();
-                    }} >
+                    }} className={styles.submitBox}>
                         {'Create Category'}
                     </button>
                 </Box>
@@ -114,7 +147,7 @@ const PopUp = () => {
         </div>
     );
 }
-const ExistPopUp = ({ catName, catIcon, catId }) => {
+const ExistPopUp = ({ catName, catIcon, catId, onCategoryUpdated }) => {
     const [open, setOpen] = React.useState(false);
     const [selectedIcon, setSelectedIcon] = React.useState(catIcon);
     const [catTitle, setCatTitle] = React.useState(catName);
@@ -129,8 +162,24 @@ const ExistPopUp = ({ catName, catIcon, catId }) => {
         setSelectedIcon(event.target.value);
     };
 
-    const handleSubmit = () => {
-        loadUpdate(catId, catTitle, selectedIcon);
+    const handleSubmit = async () => {
+        await loadUpdate(catId, catTitle, selectedIcon);
+        toast.success("Category's updated successfully!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Flip,
+            icon: ({ theme, type }) => <MdBuild style={{ color: 'green' }} />,
+        });
+        handleClose();
+        if (onCategoryUpdated) {
+            onCategoryUpdated();
+        }
     };
 
     return (<div>
@@ -141,7 +190,23 @@ const ExistPopUp = ({ catName, catIcon, catId }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
-            <Box sx={style}>
+            <Box sx={{
+                ...style,
+                position: 'relative'
+            }}>
+
+                <IconButton
+                    aria-label="close"
+                    onClick={handleClose}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 8,
+                        color: (theme) => theme.palette.grey[500],
+                    }}
+                >
+                    <MdClose />
+                </IconButton>
                 <Typography id="modal-modal-description" variant="h6" component="h2">
                     Update Category
                 </Typography>
@@ -159,21 +224,20 @@ const ExistPopUp = ({ catName, catIcon, catId }) => {
                     className={styles.select}
                     renderValue={(selected) => (
                         <div>
-                            <FontAwesomeIcon icon={['fas', selected]} style={{marginRight: '10px'}} />
+                            <FontAwesomeIcon icon={['fas', selected]} style={{ marginRight: '10px' }} />
                             {selected}
                         </div>
                     )}
                 >
                     {iconList.map((icon) => (
                         <MenuItem key={icon} value={icon}>
-                            <FontAwesomeIcon icon={['fas', icon]} style={{marginRight: '10px'}} />
+                            <FontAwesomeIcon icon={['fas', icon]} style={{ marginRight: '10px' }} />
                             {icon}
                         </MenuItem>
                     ))}
                 </Select>
                 <button className={styles.submit} onClick={() => {
                     handleSubmit();
-                    window.location.reload();
                 }} >
                     {'Update Category'}
                 </button>

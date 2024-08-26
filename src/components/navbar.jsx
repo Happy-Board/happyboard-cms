@@ -19,6 +19,7 @@ const Navbar = () => {
             </div>
             <div className={styles.logout} title='Logout' onClick={logout}>
                 <MdLogout />
+                {/* Logout */}
             </div>
         </div>
     </div>);

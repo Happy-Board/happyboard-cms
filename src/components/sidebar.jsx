@@ -4,7 +4,6 @@ import styles from "../styles/sidebar.module.css";
 import {
     MdDashboard,
     MdSupervisedUserCircle,
-    MdLogout,
     MdArticle,
     MdVerticalSplit,
 } from "react-icons/md";
@@ -42,8 +41,6 @@ const menuItems = [{
 
 const Sidebar = () => {
     
-    const { logout } = useAuth();
-
     return (
         <div className={styles.container}>
             <div className={styles.user}>

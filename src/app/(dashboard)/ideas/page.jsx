@@ -7,39 +7,17 @@ import { useUnpublishIdea } from '@/hooks/Publish/unPublish';
 import { usePublishIdea } from '@/hooks/Publish/publish';
 import IdeaRow from '@/components/ui/idea';
 import { Suspense } from "react";
+import Skeleton from '@/components/Skeleton';
 
 const IdeaPage = ({ searchParams }) => {
-    
-    const q = searchParams?.q || "";
+
+    const q = 8;
     const page = searchParams?.page || 1;
 
-    const { ideas: initialIdeas, count, loading } = useIdeasData(q, page);
+    const { ideas: initialIdeas, count } = useIdeasData(q, page);
 
     const { unpublishIdea } = useUnpublishIdea();
     const { publishIdea } = usePublishIdea();
-
-    if (loading) return <div>
-        <div className={styles.container} >
-            <div className={styles.top}>
-                <Search />
-            </div>
-            <table className={styles.table}>
-                <thead>
-                    <tr className={styles.headtable}>
-                        <td>Title</td>
-                        <td>Author</td>
-                        <td>Requested Date</td>
-                        <td>Category</td>
-                        <td>Status</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            <Pagination />
-        </div>
-    </div>;
 
     const handleUnpublish = async (id) => {
         try {
@@ -56,6 +34,34 @@ const IdeaPage = ({ searchParams }) => {
             console.error('Failed to publish idea:', error);
         }
     }
+
+    const SkeletonRow = () => (
+        <tr>
+            <td><Skeleton width="170px" height="40px" /></td>
+            <td><Skeleton width="170px" height="20px" /></td>
+            <td><Skeleton width="150px" height="20px" /></td>
+            <td><Skeleton width="100px" height="20px" /></td>
+            <td><Skeleton width="100px" height="20px" /></td>
+            <td><Skeleton width="150px" height="40px" /></td>
+        </tr>
+    );
+
+    const renderContent = () => {
+        if (initialIdeas.length === 0) {
+            return Array(q).fill().map((_, index) => (
+                <SkeletonRow key={index} />
+            ));
+        }
+        return initialIdeas.map((idea) => (
+            <IdeaRow
+                key={idea.id}
+                idea={idea}
+                page={page}
+                handlePublish={handlePublish}
+                handleUnpublish={handleUnpublish}
+            />
+        ))
+    };
 
     return (
         <Suspense>
@@ -76,15 +82,7 @@ const IdeaPage = ({ searchParams }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {initialIdeas && initialIdeas.map((idea) => (
-                            <IdeaRow
-                                key={idea.id}
-                                idea={idea}
-                                page={page}
-                                handlePublish={handlePublish}
-                                handleUnpublish={handleUnpublish}
-                            />
-                        ))}
+                        {renderContent()}
                     </tbody>
                 </table>
                 <Pagination count={count} />

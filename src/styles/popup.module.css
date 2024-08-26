@@ -43,9 +43,14 @@
 }
 
 .submit{
-    margin-top: 5px;
-    height: 25px;
-    border-radius: 5px;
-    background-color: rgb(184, 180, 180);
-    color: rgb(29, 28, 28)
+    color: var(--textSofter);
+    background-color: rgb(92, 132, 139);
+    border-radius: 10px;
+    padding: 4px;
+}
+.submitBox{
+    color: var(--textSofter);
+    background-color: rgb(92, 132, 139);
+    border-radius: 10px;
+    padding: 4px;
 }

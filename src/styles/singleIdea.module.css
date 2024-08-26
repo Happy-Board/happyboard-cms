@@ -10,10 +10,14 @@
     background-color: var(--bgSoft);
     padding: 20px;
     border-radius: 10px;
+    width:100px;
 }
 
 .title {
     padding: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .author {
@@ -22,6 +26,9 @@
 
 .content {
     padding: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .buttonContainer {

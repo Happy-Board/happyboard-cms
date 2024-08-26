@@ -3,17 +3,16 @@
 }
 
 .menu {
-    flex: 0.85;
+    flex: 1;
     background-color: var(--bgSoft);
     padding: 20px;
     min-height: 100vh;
-    border-radius: 10px ;
+    border-radius: 10px;
 }
 
 .content {
     flex: 4;
     padding: 20px;
-    overflow: hidden;
 }
 
 .wrapper {
@@ -33,6 +32,11 @@
     display: flex;
     gap: 20px;
     justify-content: space-between;
+}
+
+.chart {
+    display: flex;
+    gap: 10px;
 }
 
 /* .side{

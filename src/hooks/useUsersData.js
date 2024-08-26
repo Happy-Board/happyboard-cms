@@ -11,15 +11,15 @@ export const useUsersData = (q, page) => {
     useEffect(() => {
         const loadUsers = async () => {
             if (isAuthenticated && uid) {
-                const { users: fetchedUsers, count: fetchedCount } = await fetchUsers(uid, q, page);
-                setUsers(fetchedUsers);
-                setCount(fetchedCount);
+                const { users, count } = await fetchUsers(uid, q, page);
+                setUsers(users);
+                setCount(count);
             }
             setLoading(false);
         };
 
         loadUsers();
-    }, [uid, isAuthenticated, q, page]);
+    }, [uid]);
 
     return { users, count, loading };
 };

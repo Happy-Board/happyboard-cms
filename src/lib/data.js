@@ -1,8 +1,8 @@
-import { getAPIUsers, getAPIIdeas, getAPIUser, getAPICategories } from '@/services/utils'
+import { getAPIUsers, getAPIIdeas, getAPIUser, getAPICategories, getAPIViewsByDay, getAPIEventsByDay } from '@/services/utils'
 
 export const fetchUsers = async (userId, q, page) => {
     try {
-        let User = await getAPIUsers(page,q, userId);
+        let User = await getAPIUsers(page, q, userId);
         let count = User.total;
         let users = User.users;
         return { users, count };
@@ -43,6 +43,22 @@ export const fetchCats = async (uid) => {
         let count = res.total;
         return { cats, count }
     } catch (err) {
+        console.log(err);
+    }
+}
+export const fetchViewsByDay = async (uid) => {
+    try {
+        let res = await getAPIViewsByDay(uid);
+        return res;
+    } catch (err) {
+        console.log(err);
+    }
+}
+export const fetchEventsByDay = async (uid) => {
+    try{
+        let res = await getAPIEventsByDay(uid);
+        return res;
+    }catch(err){
         console.log(err);
     }
 }

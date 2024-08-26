@@ -7,6 +7,7 @@ import { useBanUser } from '@/hooks/Publish/unPublish';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUpdateRole } from '@/hooks/useUpdateRole'
+import Image from "next/image";
 
 
 const SigleUserPage = () => {
@@ -36,7 +37,6 @@ const SigleUserPage = () => {
             setStatus(initialUser.status);
         }
     }, [initialUser]);
-    console.log(user);
     if (useLoading || !user?.roles) {
         return <div className={styles.container}>
             <div className={styles.infoContainer} >
@@ -106,7 +106,7 @@ const SigleUserPage = () => {
         <div className={styles.container}>
             <div className={styles.infoContainer} >
                 <div className={styles.imgContainer}>
-                    <img  src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}alt="User Image" fill />
+                    <Image  src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}alt="User Image" fill />
                 </div>
                 {user.username}
             </div>

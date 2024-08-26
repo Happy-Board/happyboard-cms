@@ -2,7 +2,7 @@
 
 import 'dotenv/config';
 import styles from "@/styles/login.module.css";
-import LoginForm from "@/components/ui/login/loginForm/loginForm";
+import LoginForm from "@/components/ui/login/loginForm";
 
 const LoginPage = () => {
   return (

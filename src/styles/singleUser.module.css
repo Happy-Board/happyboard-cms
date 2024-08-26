@@ -16,7 +16,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .imgContainer {
@@ -29,7 +28,7 @@
 }
 
 .formContainer {
-  flex: 3;
+  flex: 2;
   background-color: var(--bgSoft);
   padding: 20px;
   border-radius: 10px;

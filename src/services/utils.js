@@ -66,7 +66,28 @@ export const getAPICategories = async (uid) => {
         console.log(err);
     }
 }
-
+export const getAPIViewsByDay = async (uid) => {
+    try {
+        const res = await axiosInstance.get('/googleanalytics/views', uid);
+        if (res.data.status !== 200) {
+            throw new Error(res.data.message || 'API error');
+        }
+        return res.data.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+export const getAPIEventsByDay = async (uid) => {
+    try {
+        const res = await axiosInstance.get('/googleanalytics/events', uid);
+        if (res.data.status !== 200){
+            throw new Error(res.data.message || 'API Error');
+        }
+        return res.data.data;
+    }catch(err){
+        console.log(err);
+    }
+}
 //POST API
 export const postAPIUnpublishIdea = async (ideaId, uid) => {
     await axiosInstance.post(`ideas/${ideaId}/unpublish`, uid)

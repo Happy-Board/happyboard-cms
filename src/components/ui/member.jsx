@@ -3,14 +3,17 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import {
     MdBlock,
+    MdHighlightOff,
     MdVerified,
     MdVisibility,
 } from 'react-icons/md';
 import styles from '@/styles/members.module.css';
+import { Flip, toast } from 'react-toastify';
 
 export const UserRow = ({ user, handleActive, handleBan }) => {
     const [userRole, setUserRole] = useState(getUserRole(user));
     const [isActive, setIsActive] = useState(user.status === 'active');
+    const [isProcessing, setIsProcessing] = useState(false);
 
     useEffect(() => {
         setUserRole(getUserRole(user));
@@ -24,16 +27,59 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
         return 'Pending-user';
     }
 
-    const handleActivate = () => {
-        handleActive(user.id);
-        setIsActive(true);
-        setUserRole('User');
+    const handleActivate = async () => {
+        if (isProcessing) return;
+        setIsProcessing(true);
+        try {
+            await handleActive(user.id);
+            setTimeout(() => {
+                setIsActive(true);
+                setUserRole('User');
+                setIsProcessing(false);
+                toast.success("User activated successfully!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Flip,
+                });
+            }, 100);
+        } catch (error) {
+            console.error("Error activating user:", error);
+            setIsProcessing(false);
+        }
     };
 
-    const handleBanning = () => {
-        handleBan(user.id);
-        setIsActive(false);
-        setUserRole('Pending-user');
+    const handleBanning = async () => {
+        if (isProcessing) return;
+        setIsProcessing(true);
+        try {
+            await handleBan(user.id);
+            setTimeout(() => {
+                setIsActive(false);
+                setUserRole('Pending-user');
+                setIsProcessing(false);
+                toast.error("User banned successfully!", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Flip,
+                    icon: ({ theme, type }) => <MdHighlightOff style={{ color: 'red' }} />,
+                });
+            }, 100);
+        } catch (error) {
+            console.error("Error banning user:", error);
+            setIsProcessing(false);
+        }
     };
 
     const getRoleClassName = (role) => {
@@ -42,7 +88,7 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
                 return styles.superAdmin;
             case 'Admin':
                 return styles.admin;
-            case'Pending-user':
+            case 'Pending-user':
                 return styles.pending;
             default:
                 return styles.normal;
@@ -72,28 +118,42 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
             <td className={`${styles.usrl} ${getRoleClassName(userRole)}`}>{userRole}</td>
             <td className={`${styles.usrl} ${getStatusClassName(isActive)}`}>{isActive ? 'Active' : 'Block'}</td>
             <td>
-                <div className={styles.buttons}>
-                    <Link href={`/members/${user.id}`}>
-                        <button className={`status ${styles.view}`} title='View'><MdVisibility /></button>
-                    </Link>
-                    <button 
-                        className={`status ${styles.approve}`}
-                        title='Accept'
-                        disabled={isActive || userRole === 'Admin' || userRole === 'Super-Admin'}
-                        onClick={handleActivate}
-                    >
-                        <MdVerified />
-                    </button>
-                    <button 
-                        className={`status ${styles.blockBut}`}
-                        title='Ban'
-                        disabled={!isActive || userRole === 'Super-Admin' || user.id === 1}
-                        onClick={handleBanning}
-                    >
-                        <MdBlock />
-                    </button>
-                </div>
+                {isProcessing && <div className={styles.dotspinner}>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                    <div className={styles.dotspinnerdot}></div>
+                </div>}{
+                    !isProcessing &&
+                    <div className={styles.buttons}>
+                        <Link href={`/members/${user.id}`}>
+                            <button className={`status ${styles.view}`} title='View'><MdVisibility /></button>
+                        </Link>
+                        <button
+                            className={`status ${styles.approve}`}
+                            title='Accept'
+                            disabled={isActive || userRole === 'Admin' || userRole === 'Super-Admin'}
+                            onClick={handleActivate}
+                        >
+                            <MdVerified />
+                        </button>
+                        <button
+                            className={`status ${styles.blockBut}`}
+                            title='Ban'
+                            disabled={!isActive || userRole === 'Super-Admin' || user.id === 1}
+                            onClick={handleBanning}
+                        >
+
+                            <MdBlock />
+                        </button>
+                    </div>
+                }
             </td>
         </tr>
+
     );
 }
