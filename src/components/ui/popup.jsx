@@ -81,7 +81,7 @@ const PopUp = ({ onCategoryAdded }) => {
 
     return (
         <div>
-            <button className={styles.addButton} onClick={handleOpen}><MdAdd /> Add Category</button>
+            <button className={styles.addButton} onClick={handleOpen}> Add Category</button>
             <Modal
                 open={open}
                 onClose={handleClose}

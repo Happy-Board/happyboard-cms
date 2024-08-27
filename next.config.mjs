@@ -10,6 +10,7 @@ const nextConfig = {
     experimental: {
         missingSuspenseWithCSRBailout: false,
     },
+    // assetPrefix: process.env.NODE_ENV === 'production' ? 'http://cdn.example.com' : 'http://cdn.example.com'
 
 };
 

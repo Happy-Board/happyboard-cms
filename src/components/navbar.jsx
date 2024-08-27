@@ -1,11 +1,14 @@
 'use client'
 import { usePathname } from 'next/navigation';
 import styles from '@/styles/navbar.module.css'
-import { MdLogout, MdPublic, MdSearch } from 'react-icons/md';
+import { MdLogout} from 'react-icons/md';
 import useAuth from '@/lib/auth';
+import { useTheme } from '@/app/context/ThemeContext';
 
 const Navbar = () => {
 
+
+    const { theme, toggleTheme } = useTheme();
     const pathname = usePathname();
     const { logout } = useAuth();
 
@@ -14,12 +17,18 @@ const Navbar = () => {
             {pathname.split("/").pop()}
         </div>
         <div className={styles.menu}>
-            <div className={styles.icons} title='Change Theme'>
-                <MdPublic size={20} />
+             <div className={styles.toggleswitch}>
+                <label>
+                    <input 
+                        type='checkbox' 
+                        checked={theme === 'light'}
+                        onChange={toggleTheme}
+                    />
+                    <span className={styles.slider}></span>
+                </label>
             </div>
             <div className={styles.logout} title='Logout' onClick={logout}>
                 <MdLogout />
-                {/* Logout */}
             </div>
         </div>
     </div>);

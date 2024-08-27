@@ -12,5 +12,5 @@
     margin-bottom: 10px;
   }
 .chartContainer {
-    position: absolute; /* Necessary for absolute positioning of the overlay */
+    position: absolute;
   }

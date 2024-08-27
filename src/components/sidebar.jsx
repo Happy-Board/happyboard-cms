@@ -8,9 +8,6 @@ import {
     MdVerticalSplit,
 } from "react-icons/md";
 import MenuLink from "./ui/menu-link";
-import useAuth from "../lib/auth";
-
-
 
 const menuItems = [{
     title: "Pages",
@@ -44,12 +41,13 @@ const Sidebar = () => {
     return (
         <div className={styles.container}>
             <div className={styles.user}>
-                <img className={styles.userImage} src='/User_icon_2.svg.png' alt="" width="50" height="50" />
+                <img className={styles.userImage} src='/logo.png' alt="" width="70" height="70" />
                 <div className={styles.userDetail}>
                     <span className={styles.username}>Administrator</span>
                     <span className={styles.userTitle}>Super-Admin</span>
                 </div>
             </div>
+            
             <ul className={styles.list}>
                 {menuItems.map((cat) => (
                     <li key={cat.title}>

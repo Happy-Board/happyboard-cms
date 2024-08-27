@@ -22,7 +22,8 @@ a {
     color: inherit;
     text-decoration: none;
 }
-.status{
+
+.status {
     border-radius: 5px;
     padding: 5px;
     font-size: 14px;
@@ -30,10 +31,10 @@ a {
     width: 35px;
 }
 
-* button{
+* button {
     cursor: pointer;
 }
 
-* button:disabled{
-    cursor:default;
+* button:disabled {
+    cursor: default;
 }
