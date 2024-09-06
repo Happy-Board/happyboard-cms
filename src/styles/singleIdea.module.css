@@ -21,17 +21,30 @@
 }
 
 .author {
+    padding: 10px 20px;
+    color: var(--textSoft);
+}
+.status{
     padding: 5px 20px;
 }
-
 .content {
-    padding: 20px;
+    padding: 10px 20px;
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
 }
 
+.bottom{
+    display: flex;
+}
+
+.date{
+    flex: 1;
+    padding: 20px;
+    color: var(--textSoft);
+}
 .buttonContainer {
+    flex: 3;
     display: flex;
 }
 

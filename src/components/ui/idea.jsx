@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { MdBlock, MdHighlightOff, MdVerified, MdVisibility } from 'react-icons/md';
-import moment from 'moment-timezone';
-import styles from '@/styles/idea.module.css';
-import { Flip, toast } from 'react-toastify';
+import React, { useState } from "react";
+import Link from "next/link";
+import {
+  MdBlock,
+  MdHighlightOff,
+  MdVerified,
+  MdVisibility,
+} from "react-icons/md";
+import moment from "moment-timezone";
+import styles from "@/styles/idea.module.css";
+import { Flip, toast } from "react-toastify";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);
 
 const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
-
   const [isPublished, setIsPublished] = useState(idea.isPublished);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -54,8 +62,10 @@ const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
           progress: undefined,
           theme: "light",
           transition: Flip,
-          icon: ({ theme, type }) => <MdHighlightOff style={{ color: 'red' }} />,
-      });
+          icon: ({ theme, type }) => (
+            <MdHighlightOff style={{ color: "red" }} />
+          ),
+        });
       }, 100);
     } catch (error) {
       console.error("Error banning user:", error);
@@ -66,19 +76,29 @@ const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
   return (
     <tr key={idea.id}>
       <td>
-        <div className={styles.title}>{idea.title}</div>
+        <div className={styles.ideaWrapper} title="View info">
+          <Link href={`/ideas/${idea.id}?page=${page}`}>
+            <div className={styles.title}>{idea.title}</div>
+          </Link>
+        </div>
       </td>
       <td>{idea.User.email}</td>
-      <td>{moment(idea.createdAt).format('MMMM Do YYYY')}</td>
-      <td>{idea.Category?.title || 'No Cat'}</td>
+      <td>{moment(idea.createdAt).format('L')}</td>
       <td>
-        <span className={`status ${isPublished ? styles.released : styles.pending}`}>
-          {isPublished ? 'Released' : 'Pending'}
+        {isPublished == false && `Not yet released`}
+        {isPublished == true &&
+          moment(idea.updatedAt).format('L')}
+      </td>
+      <td>{idea.Category?.title || "No Cat"}</td>
+      <td>
+        <span
+          className={`status ${isPublished ? styles.released : styles.pending}`}
+        >
+          {isPublished ? "Released" : "Pending"}
         </span>
       </td>
       <td>
-        {
-          isProcessing &&
+        {isProcessing && (
           <div className={styles.dotspinner}>
             <div className={styles.dotspinnerdot}></div>
             <div className={styles.dotspinnerdot}></div>
@@ -89,16 +109,12 @@ const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
             <div className={styles.dotspinnerdot}></div>
             <div className={styles.dotspinnerdot}></div>
           </div>
-        }
-        {
-          !isProcessing &&
+        )}
+        {!isProcessing && (
           <div className={styles.buttons}>
-            <Link href={`/ideas/${idea.id}?page=${page}`}>
-              <button className={`status ${styles.view}`} title='View'><MdVisibility /></button>
-            </Link>
             <button
               className={`status ${styles.approve}`}
-              title='Release'
+              title="Release"
               onClick={handlePublishing}
               disabled={isPublished == true}
             >
@@ -106,14 +122,14 @@ const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
             </button>
             <button
               className={`status ${styles.unpublish}`}
-              title='Unpublish'
+              title="Unpublish"
               onClick={handleUnpublishing}
               disabled={isPublished == false}
             >
               <MdBlock />
             </button>
           </div>
-        }
+        )}
       </td>
     </tr>
   );

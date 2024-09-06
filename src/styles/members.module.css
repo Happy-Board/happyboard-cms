@@ -18,13 +18,17 @@
 
 .table thead {
   font-weight: bold;
-  color: var(--textSoft);
+  color: var(--text);
   font-size: larger;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .table tbody {
   color: var(--textSofter);
   font-size: medium;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .table td {
@@ -41,6 +45,12 @@
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.userWrapper:hover {
+  padding: 5px;
+  background-color: var(--bgSofter);
+  border-radius: 10px;
 }
 
 .userImage {

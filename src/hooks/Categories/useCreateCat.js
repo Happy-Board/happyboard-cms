@@ -1,26 +1,30 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import useAuth from '@/lib/auth';
-import { postAPICreateCat } from '@/services/utils';
+import useAuth from "@/lib/auth";
+import { postAPICreateCat } from "@/services/utils";
 
 export const useCreateCat = () => {
-    const { uid, isAuthenticated } = useAuth();
-    const [loading, setLoading] = useState(true);
-    const [newCat, setNewCat] = useState();
+  const { uid, isAuthenticated } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [newCat, setNewCat] = useState();
 
-    const loadCreate = async (catTitle, catDesc, catIcon) => {
-        
-        if (isAuthenticated && uid) {
-            setLoading(true);
-        }
-        try {
-            const takeNewCat = await postAPICreateCat(catTitle, catDesc, `fa-${catIcon}`, uid);
-            setNewCat(takeNewCat);
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setLoading(false);
-        }
+  const loadCreate = async (catTitle, catDesc, catIcon) => {
+    if (isAuthenticated && uid) {
+      setLoading(true);
     }
-    return { loading, newCat, loadCreate }
-}
+    try {
+      const takeNewCat = await postAPICreateCat(
+        catTitle,
+        catDesc,
+        `fa-${catIcon}`,
+        uid
+      );
+      setNewCat(takeNewCat);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return { loading, newCat, loadCreate };
+};

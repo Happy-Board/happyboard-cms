@@ -5,13 +5,18 @@
 }
 
 .title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 200;
     color: var(--text);
 }
 
 .table {
     width: 100%;
+}
+
+.table tbody {
+    color: var(--textSofter);
+    font-size: medium;
 }
 
 .table td {

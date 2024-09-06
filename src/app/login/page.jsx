@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import 'dotenv/config';
+import "dotenv/config";
 import styles from "@/styles/login.module.css";
 import LoginForm from "@/components/ui/login/loginForm";
 

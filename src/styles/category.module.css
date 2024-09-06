@@ -8,6 +8,7 @@
 .table {
     width: 100%;
 }
+
 .top {
     display: flex;
     flex-direction: column;
@@ -16,7 +17,7 @@
 
 .table thead {
     font-weight: bold;
-    color: var(--textSoft);
+    color: var(--text);
     font-size: larger;
 }
 

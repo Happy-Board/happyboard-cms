@@ -172,10 +172,11 @@
     box-shadow: inset 8px -4px 0px 0px var(--textSoft);
     background-color: var(--bgSoft);
     transition: 0.3s;
+    
 }
 
 .toggleswitch input:checked ~ .slider::before {
     transform: translateX(30px);
-    background-color: var(--bgSoft);
+    background-color: orange;
     box-shadow: none;
 }
