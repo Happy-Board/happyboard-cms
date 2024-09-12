@@ -10,7 +10,10 @@
     font-weight: 200;
     color: var(--text);
 } */
-
+.top{
+  display: flex;
+  justify-content: space-between;
+}
 .table {
   width: 100%;
   margin-top: 10px;
@@ -66,6 +69,7 @@
 }
 
 .buttons {
+  justify-content: center;
   display: flex;
   gap: 10px;
   padding: 10px;

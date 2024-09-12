@@ -48,8 +48,7 @@ const SigleIdeaPage = () => {
       } else if (action === "unpublish") {
         await unpublishIdea(id);
       }
-
-      router.push("/ideas");
+      router.push(`/ideas?page=${page}`);
     } catch (error) {
       console.error(`Failed to ${action} idea:`, error);
     }
@@ -61,7 +60,8 @@ const SigleIdeaPage = () => {
         <div className={styles.formContainer}>
           <h3 className={styles.title}>{idea.title}</h3>
           <div className={styles.status}>
-          <FontAwesomeIcon icon={idea.Category.icon} /> {idea.Category.title}
+            <FontAwesomeIcon icon={idea.Category?.icon} />{" "}
+            {idea.Category ? idea.Category.title : "No Cat"}
             <span
               className={`status ${
                 idea.isPublished ? styles.released : styles.pending
@@ -69,7 +69,6 @@ const SigleIdeaPage = () => {
             >
               {idea.isPublished ? "Released" : "Pending"}
             </span>
-            
           </div>
           <p className={styles.author}>Author: {idea.User.username}</p>
           <div
@@ -79,8 +78,7 @@ const SigleIdeaPage = () => {
           <div className={styles.bottom}>
             <div className={styles.date}>
               {" "}
-              Latest Update:{" "}
-              {moment(idea.createdAt).subtract(10, "days").calendar()}
+              Latest Update: {moment(idea.updatedAt).format("DD/MM/YYYY")}
             </div>
             <div className={styles.buttonContainer}>
               <button

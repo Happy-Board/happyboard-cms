@@ -17,9 +17,9 @@ export const useUsersData = (MAX_ITEM, page) => {
       }
       setLoading(false);
     };
-    
+
     loadUsers();
-  }, [uid]);
+  }, [uid, page]);
 
   return { users, count, loading };
 };

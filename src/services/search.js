@@ -1,3 +1,5 @@
+import { axiosInstance } from "@/configs/axios.config";
+
 export const getAPISearchUserByNameAndEmail = async (keyword, uid) => {
   try {
     const res = await axiosInstance.get(
@@ -12,9 +14,9 @@ export const getAPISearchUserByNameAndEmail = async (keyword, uid) => {
     console.log(err);
   }
 };
-export const getAPISearchIdea = async (content, uid) => {
+export const getAPISearchIdea = async (keyword, uid) => {
   try {
-    const res = await axiosInstance.get(`/ideas?q=${content}`, uid);
+    const res = await axiosInstance.get(`/ideas?keyword=${keyword}`, uid);
     if (res.data.status !== 200) {
       throw new Error(res.data.message || "API error");
     }

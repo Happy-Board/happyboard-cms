@@ -9,11 +9,12 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
   const { logout } = useAuth();
-  console.log(pathname.split('/').at(1));
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>{pathname.split('/').at(1)} {pathname.split('/').at(2)}</div>
+      <div className={styles.title}>
+        {pathname.split("/").at(1)} {pathname.split("/").at(2)}
+      </div>
       <div className={styles.menu}>
         <div className={styles.toggleswitch}>
           <label>

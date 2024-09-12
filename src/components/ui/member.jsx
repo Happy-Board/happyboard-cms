@@ -10,7 +10,7 @@ import {
 import styles from "@/styles/members.module.css";
 import { Flip, toast } from "react-toastify";
 
-export const UserRow = ({ user, handleActive, handleBan }) => {
+export const UserRow = ({ user, page, handleActive, handleBan }) => {
   const [userRole, setUserRole] = useState(getUserRole(user));
   const [isActive, setIsActive] = useState(user.status === "active");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -111,7 +111,7 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
     <tr key={user.email}>
       <td>
         <div className={styles.userWrapper} title="View info">
-          <Link href={`/members/${user.id}`} className={styles.user}>
+          <Link href={`/members/${user.id}?page=${page}`} className={styles.user}>
             <img
               src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}
               className={styles.userImage}
@@ -124,7 +124,7 @@ export const UserRow = ({ user, handleActive, handleBan }) => {
         </div>
       </td>
       <td>{user.email}</td>
-      <td>{moment(user.createdAt).format('L')}</td>
+      <td>{moment(user.createdAt).format("DD/MM/YYYY")}</td>
       <td className={`${styles.usrl} ${getRoleClassName(userRole)}`}>
         {userRole}
       </td>

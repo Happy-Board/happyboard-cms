@@ -1,19 +1,57 @@
 "use client";
 import Search from "@/components/ui/search";
 import Pagination from "@/components/pagination";
-import { useIdeasData } from "@/hooks/useIdeasData";
 import styles from "@/styles/idea.module.css";
 import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
 import { usePublishIdea } from "@/hooks/Publish/publish";
 import IdeaRow from "@/components/ui/idea";
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
+import Filter from "@/components/ui/filter";
+import useAuth from "@/lib/auth";
+import { fetchIdeas } from "@/lib/data";
+import getAPISearchIdea from "@/services/search";
 
 const IdeaPage = ({ searchParams }) => {
-  const MAX_ITEM = 8;
-  const page = searchParams?.page || 1;
+  const [ideas, setIdeas] = useState([]);
+  const [count, setCount] = useState();
+  const intervalRef = useRef(null);
 
-  const { ideas: initialIdeas, count } = useIdeasData(MAX_ITEM, page);
+  const { uid, isAuthenticated } = useAuth();
+
+  const MAX_ITEM = 7;
+  const page = searchParams?.page || 1;
+  const keyword = searchParams?.keyword || "";
+
+  const loadIdeas = async () => {
+    if (isAuthenticated && uid) {
+      if (keyword) {
+        const searchResults = await x(
+          keyword,
+          uid
+        );
+        setUsers(searchResults.ideas);
+        setCount(searchResults.total);
+      } else {
+        const { ideas, count } = await fetchIdeas(uid, MAX_ITEM, page);
+        setIdeas(ideas);
+        setCount(count);
+      }
+    }
+  };
+  useEffect(() => {
+    loadIdeas();
+
+    intervalRef.current = setInterval(() => {
+      loadIdeas();
+    }, 300000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [uid, page, keyword]);
 
   const { unpublishIdea } = useUnpublishIdea();
   const { publishIdea } = usePublishIdea();
@@ -60,12 +98,12 @@ const IdeaPage = ({ searchParams }) => {
   );
 
   const renderContent = () => {
-    if (initialIdeas.length === 0) {
+    if (ideas.length === 0) {
       return Array(MAX_ITEM)
         .fill()
         .map((_, index) => <SkeletonRow key={index} />);
     }
-    return initialIdeas.map((idea) => (
+    return ideas.map((idea) => (
       <IdeaRow
         key={idea.id}
         idea={idea}
@@ -75,12 +113,12 @@ const IdeaPage = ({ searchParams }) => {
       />
     ));
   };
-
   return (
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
           <Search />
+          <Filter filterOptions={["Pending", "Released"]} />
         </div>
         <table className={styles.table}>
           <thead>

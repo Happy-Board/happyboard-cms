@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { ThemeProvider } from "./context/ThemeContext";
-import { icons } from "react-icons/lib";
 
 const inter = Inter({ subsets: ["latin"] });
 

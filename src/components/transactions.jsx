@@ -73,7 +73,7 @@ const Transaction = () => {
             {user.isOnline ? "Online" : "Offline"}
           </span>{" "}
         </td>
-        <td>{moment(user.createdAt).subtract(10, "days").calendar()}</td>
+        <td>{moment(user.createdAt).format("DD/MM/YYYY")}</td>
       </tr>
     ));
   };

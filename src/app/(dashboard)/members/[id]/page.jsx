@@ -22,7 +22,7 @@ const SigleUserPage = () => {
   const [status, setStatus] = useState(user?.status || "");
   const [loading, setLoading] = useState(false);
   const [roleId, setRoleId] = useState(role);
-    
+
   useEffect(() => {
     if (initialUser && initialUser.roles) {
       setUser(initialUser);

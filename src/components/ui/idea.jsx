@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  MdBlock,
-  MdHighlightOff,
-  MdVerified,
-  MdVisibility,
-} from "react-icons/md";
+import { MdBlock, MdHighlightOff, MdVerified } from "react-icons/md";
 import moment from "moment-timezone";
 import styles from "@/styles/idea.module.css";
 import { Flip, toast } from "react-toastify";
@@ -17,10 +12,12 @@ library.add(fas);
 const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
   const [isPublished, setIsPublished] = useState(idea.isPublished);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isFirstTime, setisFirstTime] = useState(true);
 
   const handlePublishing = async () => {
     if (isProcessing) return;
     setIsProcessing(true);
+    setisFirstTime(false);
     try {
       await handlePublish(idea.id);
       setTimeout(() => {
@@ -83,11 +80,11 @@ const IdeaRow = ({ idea, page, handlePublish, handleUnpublish }) => {
         </div>
       </td>
       <td>{idea.User.email}</td>
-      <td>{moment(idea.createdAt).format('L')}</td>
+      <td>{moment(idea.createdAt).format("DD/MM/YYYY")}</td>
       <td>
         {isPublished == false && `Not yet released`}
-        {isPublished == true &&
-          moment(idea.updatedAt).format('L')}
+        {isPublished == true && isFirstTime == true && moment(idea.updatedAt).format("DD/MM/YYYY")}
+        {isPublished == true && isFirstTime == false && moment().format("DD/MM/YYYY")}
       </td>
       <td>{idea.Category?.title || "No Cat"}</td>
       <td>

@@ -58,7 +58,6 @@ const Dashboard = () => {
       }
     };
   }, [uid]);
-  // const { count: catsCount } = useCatsData();
   const loadCats = async () => {
     if (isAuthenticated && uid) {
       const { count } = await fetchCats(uid);

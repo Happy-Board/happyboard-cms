@@ -5,14 +5,19 @@
     margin-top: 20px;
 }
 
+.top {
+    display: flex;
+
+}
+
 .table {
     width: 100%;
 }
 
 .top {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .table thead {

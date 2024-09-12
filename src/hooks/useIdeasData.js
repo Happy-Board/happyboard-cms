@@ -23,7 +23,7 @@ export const useIdeasData = (MAX_ITEM, page) => {
     };
 
     loadIdeas();
-  }, [uid, isAuthenticated, MAX_ITEM, page]);
+  }, [uid, page]);
 
   return { ideas, count, loading };
 };

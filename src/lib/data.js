@@ -29,7 +29,7 @@ export const fetchUsersOnline = async (uid) => {
 };
 export const fetchIdeas = async (userId, MAX_ITEM, page) => {
   try {
-    let Ideas = await getAPIIdeas(page, userId);
+    let Ideas = await getAPIIdeas(page,MAX_ITEM, userId);
     let count = Ideas.total;
     let ideas = Ideas.ideas;
     return { ideas, count };

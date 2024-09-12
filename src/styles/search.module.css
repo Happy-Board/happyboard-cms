@@ -5,7 +5,7 @@
     background-color: var(--bgSofter);
     padding: 10px;
     border-radius: 10px;
-    margin-right: 80%;
+    height: 35px;
 }
 
 .input {

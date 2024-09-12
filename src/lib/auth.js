@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { axiosInstance } from "../configs/axios.config";
 import { useRouter } from "next/navigation";
 
@@ -50,8 +50,9 @@ const useAuth = () => {
           originalRequest._retry = true;
           try {
             const refreshToken = localStorage.getItem("refreshToken");
-            const response = await axiosInstance.post("/refresh-token", {
+            const response = await axiosInstance.post("/refresh", {
               refreshToken,
+              uid,
             });
             const { accessToken } = response.data;
             localStorage.setItem("accessToken", accessToken);
