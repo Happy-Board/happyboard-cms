@@ -13,7 +13,7 @@ import { useDeleteCat } from "@/hooks/Categories/useDeleteCat";
 import Search from "@/components/ui/search";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/component./skeleton";
 import useAuth from "@/lib/auth";
 import { fetchCats } from "@/lib/data";
 import { Flip, toast } from "react-toastify";

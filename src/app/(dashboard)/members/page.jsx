@@ -8,7 +8,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";
 import "react-toastify/dist/ReactToastify.css";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/component./skeleton";
 import Filter from "@/components/ui/filter";
 import { getAPISearchUserByNameAndEmail } from "@/services/search";
 import useAuth from "@/lib/auth";

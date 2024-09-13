@@ -6,7 +6,7 @@ import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
 import { usePublishIdea } from "@/hooks/Publish/publish";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/component./skeleton";
 import Filter from "@/components/ui/filter";
 import useAuth from "@/lib/auth";
 import { fetchIdeas } from "@/lib/data";
