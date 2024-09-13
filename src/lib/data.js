@@ -6,7 +6,7 @@ import {
   getAPIViewsByDay,
   getAPIEventsByDay,
   getAPIUsersOnline,
-} from "@/services/utils";
+} from "./src/services/utils";
 
 export const fetchUsers = async (uid, MAX_ITEM, page) => {
   try {

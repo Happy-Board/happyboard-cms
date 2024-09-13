@@ -1,21 +1,21 @@
 "use client";
 
 import * as React from "react";
-import styles from "@/styles/category.module.css";
+import styles from "./src/styles/category.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import { MdDeleteOutline, MdHighlightOff } from "react-icons/md";
-import Pagination from "@/components/pagination";
-import { PopUp, ExistPopUp } from "@/components/ui/popup";
-import { useDeleteCat } from "@/hooks/Categories/useDeleteCat";
-import Search from "@/components/ui/search";
+import Pagination from "./src/components/pagination";
+import { PopUp, ExistPopUp } from "./src/components/ui/popup";
+import { useDeleteCat } from "./src/hooks/Categories/useDeleteCat";
+import Search from "./src/components/ui/search";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
-import Skeleton from "@/component./skeleton";
-import useAuth from "@/lib/auth";
-import { fetchCats } from "@/lib/data";
+import Skeleton from "./src/component./skeleton";
+import useAuth from "./src/lib/auth";
+import { fetchCats } from "./src/lib/data";
 import { Flip, toast } from "react-toastify";
 
 library.add(fas);

@@ -7,7 +7,7 @@ import {
   MdVerified,
   MdVisibility,
 } from "react-icons/md";
-import styles from "@/styles/members.module.css";
+import styles from "./src/styles/members.module.css";
 import { Flip, toast } from "react-toastify";
 
 export const UserRow = ({ user, page, handleActive, handleBan }) => {

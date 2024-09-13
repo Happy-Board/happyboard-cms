@@ -1,9 +1,9 @@
-import styles from "@/styles/transactions.module.css";
+import styles from "./src/styles/transactions.module.css";
 import moment from "moment-timezone";
 import Skeleton from "./skeleton";
 import { useEffect, useRef, useState } from "react";
-import useAuth from "@/lib/auth";
-import { fetchUsers, fetchUsersOnline } from "@/lib/data";
+import useAuth from "./src/lib/auth";
+import { fetchUsers, fetchUsersOnline } from "./src/lib/data";
 
 const Transaction = () => {
   const MAX_ITEM = 5;

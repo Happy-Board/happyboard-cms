@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import useAuth from "@/lib/auth";
-import { delAPIDeleteCat } from "@/services/utils";
+import useAuth from "./src/lib/auth";
+import { delAPIDeleteCat } from "./src/services/utils";
 
 export const useDeleteCat = () => {
   const { uid, isAuthenticated } = useAuth();

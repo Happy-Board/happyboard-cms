@@ -1,4 +1,4 @@
-import styles from "@/styles/card.module.css";
+import styles from "./src/styles/card.module.css";
 import Link from "next/link";
 
 const Card = ({ title, number }) => {

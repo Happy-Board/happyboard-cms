@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useAuth from "@/lib/auth";
-import { putAPIActiveUser, postAPIPublishIdea } from "@/services/utils";
+import useAuth from "./src/lib/auth";
+import { putAPIActiveUser, postAPIPublishIdea } from "./src/services/utils";
 
 export const usePublishIdea = () => {
   const { uid, isAuthenticated } = useAuth();

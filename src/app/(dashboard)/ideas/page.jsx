@@ -1,16 +1,16 @@
 "use client";
-import Search from "@/components/ui/search";
-import Pagination from "@/components/pagination";
-import styles from "@/styles/idea.module.css";
-import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
-import { usePublishIdea } from "@/hooks/Publish/publish";
-import IdeaRow from "@/components/ui/idea";
+import Search from "./src/components/ui/search";
+import Pagination from "./src/components/pagination";
+import styles from "./src/styles/idea.module.css";
+import { useUnpublishIdea } from "./src/hooks/Publish/unPublish";
+import { usePublishIdea } from "./src/hooks/Publish/publish";
+import IdeaRow from "./src/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
-import Skeleton from "@/component./skeleton";
-import Filter from "@/components/ui/filter";
-import useAuth from "@/lib/auth";
-import { fetchIdeas } from "@/lib/data";
-import getAPISearchIdea from "@/services/search";
+import Skeleton from "./src/component./skeleton";
+import Filter from "./src/components/ui/filter";
+import useAuth from "./src/lib/auth";
+import { fetchIdeas } from "./src/lib/data";
+import getAPISearchIdea from "./src/services/search";
 
 const IdeaPage = ({ searchParams }) => {
   const [ideas, setIdeas] = useState([]);

@@ -1,5 +1,5 @@
-import useAuth from "@/lib/auth";
-import { fetchCats } from "@/lib/data";
+import useAuth from "./src/lib/auth";
+import { fetchCats } from "./src/lib/data";
 import { useEffect, useState } from "react";
 
 export const useCatsData = () => {

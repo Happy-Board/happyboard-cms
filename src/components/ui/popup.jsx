@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import styles from "@/styles/popup.module.css";
+import styles from "./src/styles/popup.module.css";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -12,8 +12,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-import { useCreateCat } from "@/hooks/Categories/useCreateCat";
-import { useUpdateCat } from "@/hooks/Categories/useUpdateCat";
+import { useCreateCat } from "./src/hooks/Categories/useCreateCat";
+import { useUpdateCat } from "./src/hooks/Categories/useUpdateCat";
 import { Flip, toast } from "react-toastify";
 import { IconButton } from "@mui/material";
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useAuth from "@/lib/auth";
-import { fetchUsers, fetchUser } from "@/lib/data";
+import useAuth from "./src/lib/auth";
+import { fetchUsers, fetchUser } from "./src/lib/data";
 
 export const useUsersData = (MAX_ITEM, page) => {
   const { uid, isAuthenticated } = useAuth();

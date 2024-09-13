@@ -1,5 +1,5 @@
 import { MenuItem, Select, TextField } from "@mui/material";
-import styles from "@/styles/filter.module.css";
+import styles from "./src/styles/filter.module.css";
 import { useState } from "react";
 
 const Filter = ({ filterOptions, onFilterChange }) => {

@@ -1,8 +1,8 @@
 "use client";
 
 import "dotenv/config";
-import styles from "@/styles/login.module.css";
-import LoginForm from "@/components/ui/login/loginForm";
+import styles from "./src/styles/login.module.css";
+import LoginForm from "./src/components/ui/login/loginForm";
 
 const LoginPage = () => {
   return (

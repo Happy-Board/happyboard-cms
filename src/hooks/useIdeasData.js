@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useAuth from "@/lib/auth";
-import { fetchIdeas, fetchIdea } from "@/lib/data";
+import useAuth from "./src/lib/auth";
+import { fetchIdeas, fetchIdea } from "./src/lib/data";
 
 export const useIdeasData = (MAX_ITEM, page) => {
   const { uid, isAuthenticated } = useAuth();

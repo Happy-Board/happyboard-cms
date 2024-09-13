@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/chart.module.css";
+import styles from "./src/styles/chart.module.css";
 import {
   BarChart,
   Bar,
@@ -13,8 +13,8 @@ import {
   LineChart,
   Line,
 } from "recharts";
-import useAuth from "@/lib/auth";
-import { fetchEventsByDay, fetchViewsByDay } from "@/lib/data";
+import useAuth from "./src/lib/auth";
+import { fetchEventsByDay, fetchViewsByDay } from "./src/lib/data";
 import { useEffect, useRef, useState } from "react";
 
 const Chart1 = () => {

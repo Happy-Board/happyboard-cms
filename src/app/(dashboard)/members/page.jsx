@@ -1,18 +1,18 @@
 "use client";
 
-import styles from "@/styles/members.module.css";
-import Pagination from "@/components/pagination";
-import { useActiveUser } from "@/hooks/Publish/publish";
-import { useBanUser } from "@/hooks/Publish/unPublish";
+import styles from "./src/styles/members.module.css";
+import Pagination from "./src/components/pagination";
+import { useActiveUser } from "./src/hooks/Publish/publish";
+import { useBanUser } from "./src/hooks/Publish/unPublish";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { UserRow } from "@/components/ui/member";
-import Search from "@/components/ui/search";
+import { UserRow } from "./src/components/ui/member";
+import Search from "./src/components/ui/search";
 import "react-toastify/dist/ReactToastify.css";
-import Skeleton from "@/component./skeleton";
-import Filter from "@/components/ui/filter";
-import { getAPISearchUserByNameAndEmail } from "@/services/search";
-import useAuth from "@/lib/auth";
-import { fetchUsers } from "@/lib/data";
+import Skeleton from "./src/component./skeleton";
+import Filter from "./src/components/ui/filter";
+import { getAPISearchUserByNameAndEmail } from "./src/services/search";
+import useAuth from "./src/lib/auth";
+import { fetchUsers } from "./src/lib/data";
 
 const UsersPage = ({ searchParams }) => {
   const [users, setUsers] = useState([]);

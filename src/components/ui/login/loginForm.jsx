@@ -1,8 +1,8 @@
 "use client";
 
-import styles from "@/styles/loginForm.module.css";
+import styles from "./src/styles/loginForm.module.css";
 import { useState } from "react";
-import useAuth from "@/lib/auth";
+import useAuth from "./src/lib/auth";
 import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/pagination.module.css";
+import styles from "./src/styles/pagination.module.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";

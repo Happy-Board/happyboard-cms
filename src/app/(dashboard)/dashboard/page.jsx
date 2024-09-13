@@ -2,13 +2,13 @@
 
 import "dotenv/config";
 
-import styles from "@/styles/dashboard.module.css";
-import Card from "@/components/ui/card";
-import Transaction from "@/components/transactions";
-import { Chart1, Chart2, Chart3, Chart4 } from "@/components/ui/chart";
+import styles from "./src/styles/dashboard.module.css";
+import Card from "./src/components/ui/card";
+import Transaction from "./src/components/transactions";
+import { Chart1, Chart2, Chart3, Chart4 } from "./src/components/ui/chart";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { fetchCats, fetchIdeas, fetchUsers } from "@/lib/data";
-import useAuth from "@/lib/auth";
+import { fetchCats, fetchIdeas, fetchUsers } from "./src/lib/data";
+import useAuth from "./src/lib/auth";
 
 const Dashboard = () => {
   const MAX_ITEM = 1;

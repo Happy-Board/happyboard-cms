@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import useAuth from "@/lib/auth";
-import { putAPIUdpdateCat } from "@/services/utils";
+import useAuth from "./src/lib/auth";
+import { putAPIUdpdateCat } from "./src/services/utils";
 
 export const useUpdateCat = () => {
   const { uid, isAuthenticated } = useAuth();

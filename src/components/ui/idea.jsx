@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { MdBlock, MdHighlightOff, MdVerified } from "react-icons/md";
 import moment from "moment-timezone";
-import styles from "@/styles/idea.module.css";
+import styles from "./src/styles/idea.module.css";
 import { Flip, toast } from "react-toastify";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";

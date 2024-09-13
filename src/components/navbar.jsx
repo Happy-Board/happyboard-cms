@@ -1,9 +1,9 @@
 "use client";
 import { usePathname } from "next/navigation";
-import styles from "@/styles/navbar.module.css";
+import styles from "./src/styles/navbar.module.css";
 import { MdLogout } from "react-icons/md";
-import useAuth from "@/lib/auth";
-import { useTheme } from "@/app/context/ThemeContext";
+import useAuth from "./src/lib/auth";
+import { useTheme } from "./src/app/context/ThemeContext";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();

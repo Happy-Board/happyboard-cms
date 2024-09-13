@@ -1,6 +1,6 @@
-import useAuth from "@/lib/auth";
+import useAuth from "./src/lib/auth";
 import { useState } from "react";
-import { putAPIUpdateRole } from "@/services/utils";
+import { putAPIUpdateRole } from "./src/services/utils";
 
 export const useUpdateRole = () => {
   const { uid, isAuthenticated } = useAuth();

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/configs/axios.config";
+import { axiosInstance } from "./src/configs/axios.config";
 
 export const getAPISearchUserByNameAndEmail = async (keyword, uid) => {
   try {

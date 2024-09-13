@@ -1,6 +1,6 @@
 import { useState } from "react";
-import useAuth from "@/lib/auth";
-import { putAPIBanUser, postAPIUnpublishIdea } from "@/services/utils";
+import useAuth from "./src/lib/auth";
+import { putAPIBanUser, postAPIUnpublishIdea } from "./src/services/utils";
 
 export const useUnpublishIdea = () => {
   const { uid, isAuthenticated } = useAuth();

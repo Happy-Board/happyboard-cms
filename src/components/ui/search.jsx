@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/search.module.css";
+import styles from "./src/styles/search.module.css";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { MdSearch } from "react-icons/md";
