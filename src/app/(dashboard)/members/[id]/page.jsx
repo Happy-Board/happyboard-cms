@@ -3,7 +3,7 @@ import styles from "@/styles/singleUser.module.css";
 import { usePathname } from "next/navigation";
 import { useUserData } from "@/hooks/useUsersData";
 import { useActiveUser } from "@/hooks/Publish/publish";
-import { useBanUser } from "@/hooks/Publish/unPublish";
+import { useBanUser } from "@/hooks/Publish/unpublish";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUpdateRole } from "@/hooks/useUpdateRole";

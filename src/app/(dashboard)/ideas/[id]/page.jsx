@@ -4,7 +4,7 @@ import { useIdeaData } from "@/hooks/useIdeasData";
 import styles from "@/styles/singleIdea.module.css";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
+import { useUnpublishIdea } from "@/hooks/Publish/unpublish";
 import { usePublishIdea } from "@/hooks/Publish/publish";
 import moment from "moment-timezone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

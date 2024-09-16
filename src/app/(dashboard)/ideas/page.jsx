@@ -2,11 +2,11 @@
 import Search from "@/components/ui/search";
 import Pagination from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
-import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
+import { useUnpublishIdea } from "@/hooks/Publish/unpublish";
 import { usePublishIdea } from "@/hooks/Publish/publish";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/components/skeleton";
 import Filter from "@/components/ui/filter";
 import useAuth from "@/lib/auth";
 import { fetchIdeas } from "@/lib/data";

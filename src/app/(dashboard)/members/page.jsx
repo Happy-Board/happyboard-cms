@@ -3,12 +3,12 @@
 import styles from "@/styles/members.module.css";
 import Pagination from "@/components/pagination";
 import { useActiveUser } from "@/hooks/Publish/publish";
-import { useBanUser } from "@/hooks/Publish/unPublish";
+import { useBanUser } from "@/hooks/Publish/unpublish";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";
 import "react-toastify/dist/ReactToastify.css";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/components/skeleton";
 import Filter from "@/components/ui/filter";
 import { getAPISearchUserByNameAndEmail } from "@/services/search";
 import useAuth from "@/lib/auth";
