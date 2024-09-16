@@ -1,0 +1,182 @@
+/* .container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--bgSoft);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    color: var(--textSoft);
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 10px;
+}
+
+.menu {
+    display: flex;
+    align-self: center;
+    gap: 10px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.logout {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.icons:hover {
+    background-color: var(--bgSofter);
+}
+
+.logout:hover {
+    background-color: var(--bgSofter);
+}
+
+
+.toggleswitch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.toggleswitch label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bgSofter);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.toggleswitch input {
+    position: absolute;
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.toggleswitch input:checked ~ .slider {
+    background-color: var(--textSoft);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: inset 8px -4px 0px 0px var(--textSoft);
+    background-color: var(--bgSoft);
+    transition: 0.3s;
+}
+
+.toggleswitch input:checked ~ .slider::before {
+    transform: translateX(30px);
+    background-color: var(--bgSoft);
+    box-shadow: none;
+} */
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--bgSoft);
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    color: var(--textSoft);
+    font-weight: bold;
+    text-transform: capitalize;
+    padding: 10px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logout {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.logout:hover {
+    background-color: var(--bgSofter);
+}
+
+.toggleswitch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.toggleswitch label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bgSofter);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.toggleswitch input {
+    position: absolute;
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.toggleswitch input:checked ~ .slider {
+    background-color: var(--textSoft);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    box-shadow: inset 8px -4px 0px 0px var(--textSoft);
+    background-color: var(--bgSoft);
+    transition: 0.3s;
+    
+}
+
+.toggleswitch input:checked ~ .slider::before {
+    transform: translateX(30px);
+    background-color: orange;
+    box-shadow: none;
+}

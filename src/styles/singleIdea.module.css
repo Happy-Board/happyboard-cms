@@ -1,0 +1,92 @@
+.container {
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+
+}
+
+.formContainer {
+    flex: 3;
+    background-color: var(--bgSoft);
+    padding: 20px;
+    border-radius: 10px;
+    width:100px;
+}
+
+.title {
+    padding: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.author {
+    padding: 10px 20px;
+    color: var(--textSoft);
+}
+.status{
+    padding: 5px 20px;
+}
+.content {
+    padding: 10px 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.bottom{
+    display: flex;
+}
+
+.date{
+    flex: 1;
+    padding: 20px;
+    color: var(--textSoft);
+}
+.buttonContainer {
+    flex: 3;
+    display: flex;
+}
+
+.approve {
+    background-color: rgb(61, 125, 221);
+}
+.approve:disabled {
+    background-color: rgb(102, 102, 93);
+    cursor: default;
+}
+
+.unpublish {
+    background-color: red;
+}
+.unpublish:disabled {
+    background-color: rgb(102, 102, 93);
+    cursor: default;
+}
+
+.buttonContainer button {
+    width: 80%;
+    margin: 20px;
+    padding: 20px;
+    color: var(--text);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: rgb(241, 234, 234);
+    font-weight: bold;
+
+}
+
+.released {
+    border: 2px solid var(--bgSofter);
+    color: rgb(71, 226, 226);
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.pending {
+    border: 2px solid var(--bgSofter);
+    color: rgb(247, 247, 131);
+    font-weight: bold;
+    margin-left: 20px;
+}

@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,9 +22,34 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components": [
+        "./src/components"
+      ],
+      "@/styles": [
+        "./src/styles"
+      ],
+      "@/lib": [
+        "./src/lib"
+      ],
+      "@/services": [
+        "./src/services"
+      ],
+      "@/hooks": [
+        "./src/hooks"
+      ],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/layout.jsx"
+, "src/components/ui/login/loginForm.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
