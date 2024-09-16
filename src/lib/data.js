@@ -6,6 +6,8 @@ import {
   getAPIViewsByDay,
   getAPIEventsByDay,
   getAPIUsersOnline,
+  getAPINewUsersByDay,
+  getAPINewIdeasByDay,
 } from "@/services/utils";
 
 export const fetchUsers = async (uid, MAX_ITEM, page) => {
@@ -29,7 +31,7 @@ export const fetchUsersOnline = async (uid) => {
 };
 export const fetchIdeas = async (userId, MAX_ITEM, page) => {
   try {
-    let Ideas = await getAPIIdeas(page,MAX_ITEM, userId);
+    let Ideas = await getAPIIdeas(page, MAX_ITEM, userId);
     let count = Ideas.total;
     let ideas = Ideas.ideas;
     return { ideas, count };
@@ -71,9 +73,25 @@ export const fetchViewsByDay = async (uid) => {
     console.log(err);
   }
 };
+export const fetchNewUsersByDay = async (uid) => {
+  try {
+    let res = await getAPINewUsersByDay(uid);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const fetchEventsByDay = async (uid) => {
   try {
     let res = await getAPIEventsByDay(uid);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const fetchNewIdeasByDay = async (uid) => {
+  try {
+    let res = await getAPINewIdeasByDay(uid);
     return res;
   } catch (err) {
     console.log(err);

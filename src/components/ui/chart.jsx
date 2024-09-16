@@ -14,7 +14,12 @@ import {
   Line,
 } from "recharts";
 import useAuth from "@/lib/auth";
-import { fetchEventsByDay, fetchViewsByDay } from "@/lib/data";
+import {
+  fetchEventsByDay,
+  fetchNewIdeasByDay,
+  fetchNewUsersByDay,
+  fetchViewsByDay,
+} from "@/lib/data";
 import { useEffect, useRef, useState } from "react";
 
 const Chart1 = () => {
@@ -137,13 +142,13 @@ const Chart2 = () => {
 
 const Chart3 = () => {
   const { uid, isAuthenticated } = useAuth();
-  const [viewsByDay, setViewByDay] = useState([]);
+  const [newUsersByDay, setNewUsersByDay] = useState([]);
   const intervalRef = useRef(null);
 
   const loadChart = async () => {
     if (uid && isAuthenticated) {
-      const resViews = await fetchViewsByDay(uid);
-      setViewByDay(resViews);
+      const resNewUsers = await fetchNewUsersByDay(uid);
+      setNewUsersByDay(resNewUsers);
     }
   };
 
@@ -159,9 +164,9 @@ const Chart3 = () => {
       }
     };
   }, [uid]);
-  const viewsData = viewsByDay.map((data) => ({
+  const newUsersData = newUsersByDay.map((data) => ({
     date: data.date,
-    views: data.views,
+    users: data.userCount,
   }));
 
   return (
@@ -172,7 +177,7 @@ const Chart3 = () => {
         <LineChart
           width={500}
           height={300}
-          data={viewsData}
+          data={newUsersData}
           margin={{
             top: 5,
             right: 30,
@@ -186,7 +191,7 @@ const Chart3 = () => {
           <Legend />
           <Line
             type="monotone"
-            dataKey="views"
+            dataKey="users"
             stroke="#82ca9d"
             strokeDasharray="5 5"
           />
@@ -198,13 +203,13 @@ const Chart3 = () => {
 
 const Chart4 = () => {
   const { uid, isAuthenticated } = useAuth();
-  const [viewsByDay, setViewByDay] = useState([]);
+  const [newIdeasByDay, setNewIdeasByDay] = useState([]);
   const intervalRef = useRef(null);
 
   const loadChart = async () => {
     if (uid && isAuthenticated) {
-      const resViews = await fetchViewsByDay(uid);
-      setViewByDay(resViews);
+      const resNewIdeas = await fetchNewIdeasByDay(uid);
+      setNewIdeasByDay(resNewIdeas);
     }
   };
 
@@ -220,9 +225,9 @@ const Chart4 = () => {
       }
     };
   }, [uid]);
-  const viewsData = viewsByDay.map((data) => ({
+  const newIdeasData = newIdeasByDay.map((data) => ({
     date: data.date,
-    views: data.views,
+    ideas: data.ideaCount,
   }));
 
   return (
@@ -233,7 +238,7 @@ const Chart4 = () => {
         <LineChart
           width={500}
           height={300}
-          data={viewsData}
+          data={newIdeasData}
           margin={{
             top: 5,
             right: 30,
@@ -247,7 +252,7 @@ const Chart4 = () => {
           <Legend />
           <Line
             type="monotone"
-            dataKey="views"
+            dataKey="ideas"
             stroke="#82ca9d"
             strokeDasharray="5 5"
           />

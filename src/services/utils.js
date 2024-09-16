@@ -93,6 +93,28 @@ export const getAPIViewsByDay = async (uid) => {
     console.log(err);
   }
 };
+export const getAPINewUsersByDay = async (uid) => {
+  try {
+    const res = await axiosInstance.get("analysis/new-user?recentDays=20", uid);
+    if (res.data.status !== 200) {
+      throw new Error(res.data.message || "API error");
+    }
+    return res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getAPINewIdeasByDay = async (uid) => {
+  try {
+    const res = await axiosInstance.get("analysis/ideas?recentDays=60", uid);
+    if (res.data.status !== 200) {
+      throw new Error(res.data.message || "API error");
+    }
+    return res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const getAPIEventsByDay = async (uid) => {
   try {
     const res = await axiosInstance.get("/googleanalytics/events", uid);

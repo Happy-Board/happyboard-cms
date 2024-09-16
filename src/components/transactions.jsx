@@ -1,9 +1,9 @@
 import styles from "@/styles/transactions.module.css";
 import moment from "moment-timezone";
-import Skeleton from "./Skeleton";
+import Skeleton from "./skeleton";
 import { useEffect, useRef, useState } from "react";
 import useAuth from "@/lib/auth";
-import { fetchUsers, fetchUsersOnline } from "@/lib/data";
+import { fetchUsersOnline } from "@/lib/data";
 
 const Transaction = () => {
   const MAX_ITEM = 5;
@@ -22,7 +22,7 @@ const Transaction = () => {
 
     intervalRef.current = setInterval(() => {
       loadUsers();
-    }, 5000);
+    }, 30000);
 
     return () => {
       if (intervalRef.current) {
