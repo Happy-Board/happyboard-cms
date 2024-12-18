@@ -4,7 +4,6 @@ import "dotenv/config";
 
 import styles from "@/styles/dashboard.module.css";
 import Card from "@/components/ui/card";
-import Transaction from "@/components/transactions";
 import { Chart1, Chart2, Chart3, Chart4 } from "@/components/ui/chart";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { fetchCats, fetchIdeas, fetchUsers } from "@/lib/data";
@@ -95,7 +94,7 @@ const Dashboard = () => {
             <Chart3 />
             <Chart4 />
           </div>
-          <Transaction />
+          {/* <Transaction /> */}
         </div>
       </div>
     </Suspense>

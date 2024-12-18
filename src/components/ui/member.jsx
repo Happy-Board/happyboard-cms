@@ -111,7 +111,10 @@ export const UserRow = ({ user, page, handleActive, handleBan }) => {
     <tr key={user.email}>
       <td>
         <div className={styles.userWrapper} title="View info">
-          <Link href={`/members/${user.id}?page=${page}`} className={styles.user}>
+          <Link
+            href={`/members/${user.id}?page=${page}`}
+            className={styles.user}
+          >
             <img
               src={user?.avatar ? user.avatar : "/User_icon_2.svg.png"}
               className={styles.userImage}

@@ -1,14 +1,14 @@
 "use client";
 
 import styles from "@/styles/members.module.css";
-import Pagination from "@/components/pagination";
+import { Pagination } from "@/components/pagination";
 import { useActiveUser } from "@/hooks/Publish/publish";
-import { useBanUser } from "@/hooks/Publish/unpublish";
+import { useBanUser } from "@/hooks/Publish/unPublish";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";
 import "react-toastify/dist/ReactToastify.css";
-import Skeleton from "@/components/skeleton";
+import Skeleton from "@/components/loading";
 import Filter from "@/components/ui/filter";
 import { getAPISearchUserByNameAndEmail } from "@/services/search";
 import useAuth from "@/lib/auth";
@@ -16,8 +16,9 @@ import { fetchUsers } from "@/lib/data";
 
 const UsersPage = ({ searchParams }) => {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [count, setCount] = useState([]);
-  const intervalRef = useRef(null);
+  const [selectedRole, setSelectedRole] = useState("");
 
   const { uid, isAuthenticated } = useAuth();
 
@@ -28,29 +29,19 @@ const UsersPage = ({ searchParams }) => {
   const loadUsers = async () => {
     if (isAuthenticated && uid) {
       if (keyword) {
-        const searchResults = await getAPISearchUserByNameAndEmail(keyword, uid);
-        setUsers(searchResults.users)
-        setCount(searchResults.total)
+        const searchResults = await getAPISearchUserByNameAndEmail(
+          keyword,
+          uid
+        );
+        filterUsers(searchResults.users, selectedRole);
+        setCount(searchResults.total);
       } else {
         const { users, count } = await fetchUsers(uid, MAX_ITEM, page);
-        setUsers(users);
+        filterUsers(users, selectedRole);
         setCount(count);
       }
     }
   };
-  useEffect(() => {
-    loadUsers();
-
-    intervalRef.current = setInterval(() => {
-      loadUsers();
-    }, 300000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [uid, page, keyword]);
 
   const { activeUser } = useActiveUser();
   const { banUser } = useBanUser();
@@ -89,6 +80,29 @@ const UsersPage = ({ searchParams }) => {
     }
   };
 
+  const filterUsers = (userList, role) => {
+    setUsers(userList);
+
+    if (role) {
+      const filtered = userList.filter(
+        (user) => user.role.description === role
+      );
+      setFilteredUsers(filtered);
+      setCount(filtered.length);
+    } else {
+      setFilteredUsers(userList);
+    }
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, [uid, page, keyword, selectedRole]);
+
+  const handleFilterChange = (role) => {
+    setSelectedRole(role);
+    filterUsers(users, role);
+  };
+
   const SkeletonRow = () => (
     <tr>
       <td>
@@ -111,13 +125,16 @@ const UsersPage = ({ searchParams }) => {
       </td>
     </tr>
   );
+
   const renderContent = () => {
-    if (users.length === 0) {
+    const displayUsers = filteredUsers;
+
+    if (displayUsers.length === 0) {
       return Array(MAX_ITEM)
         .fill()
         .map((_, index) => <SkeletonRow key={index} />);
     }
-    return users.map((user) => (
+    return displayUsers.map((user) => (
       <UserRow
         key={user.email}
         user={user}
@@ -127,19 +144,23 @@ const UsersPage = ({ searchParams }) => {
       />
     ));
   };
+
   return (
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
           <Search />
-          <Filter filterOptions={["User", "Admin", "Super-Admin"]} />
+          <Filter
+            filterOptions={["User", "Admin", "Super Administrator"]}
+            onFilterChange={handleFilterChange}
+          />
         </div>
         <table className={styles.table}>
           <thead>
             <tr>
               <td>Name</td>
               <td>Email</td>
-              <td>Registation Date</td>
+              <td>Registration Date</td>
               <td>Role</td>
               <td>Status</td>
               <td>Action</td>

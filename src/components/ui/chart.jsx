@@ -74,8 +74,7 @@ const Chart1 = () => {
           <Line
             type="monotone"
             dataKey="views"
-            stroke="#82ca9d"
-            strokeDasharray="5 5"
+            stroke="#FF5555"
           />
         </LineChart>
       </ResponsiveContainer>
@@ -192,8 +191,7 @@ const Chart3 = () => {
           <Line
             type="monotone"
             dataKey="users"
-            stroke="#82ca9d"
-            strokeDasharray="5 5"
+            stroke="#FF5555"
           />
         </LineChart>
       </ResponsiveContainer>
@@ -253,8 +251,7 @@ const Chart4 = () => {
           <Line
             type="monotone"
             dataKey="ideas"
-            stroke="#82ca9d"
-            strokeDasharray="5 5"
+            stroke="#FF5555"
           />
         </LineChart>
       </ResponsiveContainer>

@@ -33,6 +33,16 @@ const menuItems = [
         path: "/categories",
         icon: <MdVerticalSplit />,
       },
+      {
+        title: "Roles",
+        path: "/roles",
+        icon: <MdVerticalSplit />,
+      },
+      {
+        title: "Permissions",
+        path: "/permissions",
+        icon: <MdVerticalSplit />,
+      }
     ],
   },
 ];
