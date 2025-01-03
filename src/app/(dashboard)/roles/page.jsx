@@ -1,7 +1,7 @@
 "use client";
 
-import { useRoles } from "../../../hooks/useRoles";
-import { usePermissions } from "../../../hooks/usePermissions";
+import { useRoles } from "@/hooks/useRoles";
+import { usePermissions } from "@/hooks/usePermissions";
 import { toast } from "react-toastify";
 import * as React from "react";
 import styles from "@/styles/permission.module.css";
