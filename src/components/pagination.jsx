@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
 
-const Pagination = ({ count }) => {
+export const Pagination = ({ count }) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -37,7 +37,7 @@ const Pagination = ({ count }) => {
           <MdArrowBackIosNew />
         </button>
         <span className={styles.pageInfo}>
-           Page {page}/{totalPages}
+          Page {page}/{totalPages}
         </span>
         <button
           className={styles.button}
@@ -51,4 +51,34 @@ const Pagination = ({ count }) => {
   );
 };
 
-export default Pagination;
+export const Pagination2 = ({ count, currentPage, onPageChange }) => {
+  const ITEM_PER_PAGE = 10;
+  const totalPages = Math.ceil(count / ITEM_PER_PAGE);
+
+  const hasPrev = currentPage > 1;
+  const hasNext = currentPage < totalPages;
+
+  return (
+    <Suspense>
+      <div className={styles.container}>
+        <button
+          className={styles.paginationButton}
+          disabled={!hasPrev}
+          onClick={() => onPageChange(currentPage - 1)}
+        >
+          <MdArrowBackIosNew />
+        </button>
+        <span className={styles.pageInfo}>
+          Page {currentPage}/{totalPages}
+        </span>
+        <button
+          className={styles.paginationButton}
+          disabled={!hasNext}
+          onClick={() => onPageChange(currentPage + 1)}
+        >
+          <MdArrowForwardIos />
+        </button>
+      </div>
+    </Suspense>
+  );
+};

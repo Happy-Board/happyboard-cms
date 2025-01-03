@@ -7,13 +7,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import { MdDeleteOutline, MdHighlightOff } from "react-icons/md";
-import Pagination from "@/components/pagination";
+import { Pagination } from "@/components/pagination";
 import { PopUp, ExistPopUp } from "@/components/ui/popup";
 import { useDeleteCat } from "@/hooks/Categories/useDeleteCat";
 import Search from "@/components/ui/search";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/components/loading";
 import useAuth from "@/lib/auth";
 import { fetchCats } from "@/lib/data";
 import { Flip, toast } from "react-toastify";

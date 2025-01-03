@@ -1,6 +1,6 @@
 import styles from "@/styles/transactions.module.css";
 import moment from "moment-timezone";
-import Skeleton from "./skeleton";
+import Skeleton from "./loading";
 import { useEffect, useRef, useState } from "react";
 import useAuth from "@/lib/auth";
 import { fetchUsersOnline } from "@/lib/data";

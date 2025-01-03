@@ -1,0 +1,150 @@
+.container {
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--bgSofter);
+  color: var(--textSoft);
+}
+
+.input::placeholder {
+  color: var(--textSoft);
+}
+
+.update {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--bgSofter);
+  color: var(--text);
+  transition: background-color 0.3s ease;
+}
+
+.update:hover {
+  background-color: rgb(136, 177, 74);
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead tr td {
+  color: var(--text);
+  border-right: 2px solid var(--bgSoft);
+  border-bottom: 2px solid var(--bgSoft);
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+.table tbody tr {
+  border-bottom: 2px solid var(--bgSoft);
+}
+
+.table tbody tr td {
+  padding: 10px;
+  color: var(--textSofter);
+  border-right: 2px solid var(--bgSoft);
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.delete {
+  border: none;
+  background-color: transparent;
+  color: var(--textSoft);
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.delete:hover {
+  color: red;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

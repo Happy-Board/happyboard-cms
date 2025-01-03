@@ -1,12 +1,12 @@
 "use client";
 import Search from "@/components/ui/search";
-import Pagination from "@/components/pagination";
+import { Pagination } from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
 import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
 import { usePublishIdea } from "@/hooks/Publish/publish";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
+import Skeleton from "@/components/loading";
 import Filter from "@/components/ui/filter";
 import useAuth from "@/lib/auth";
 import { fetchIdeas } from "@/lib/data";
@@ -14,8 +14,9 @@ import getAPISearchIdea from "@/services/search";
 
 const IdeaPage = ({ searchParams }) => {
   const [ideas, setIdeas] = useState([]);
+  const [filteredIdeas, setFilteredIdeas] = useState([]);
   const [count, setCount] = useState();
-  const intervalRef = useRef(null);
+  const [selectedStatus, setSelectedStatus] = useState("");
 
   const { uid, isAuthenticated } = useAuth();
 
@@ -26,46 +27,58 @@ const IdeaPage = ({ searchParams }) => {
   const loadIdeas = async () => {
     if (isAuthenticated && uid) {
       if (keyword) {
-        const searchResults = await x(
-          keyword,
-          uid
-        );
-        setUsers(searchResults.ideas);
+        const searchResults = await getAPISearchIdea(keyword, uid);
+        filterIdeas(searchResults.ideas, selectedStatus);
         setCount(searchResults.total);
       } else {
         const { ideas, count } = await fetchIdeas(uid, MAX_ITEM, page);
-        setIdeas(ideas);
+        filterIdeas(ideas, selectedStatus);
         setCount(count);
       }
     }
   };
+
+  const filterIdeas = (ideaList, status) => {
+    setIdeas(ideaList);
+
+    if (status) {
+      const filtered = ideaList.filter((idea) =>
+        status === "Pending" ? !idea.isPublished : idea.isPublished
+      );
+      setFilteredIdeas(filtered);
+      setCount(filtered.length);
+    } else {
+      setFilteredIdeas(ideaList);
+    }
+  };
+
   useEffect(() => {
     loadIdeas();
-
-    intervalRef.current = setInterval(() => {
-      loadIdeas();
-    }, 300000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [uid, page, keyword]);
+  }, [uid, page, keyword, selectedStatus]);
 
   const { unpublishIdea } = useUnpublishIdea();
   const { publishIdea } = usePublishIdea();
 
+  const handleFilterChange = (status) => {
+    setSelectedStatus(status);
+    filterIdeas(ideas, status);
+  };
+
   const handleUnpublish = async (id) => {
     try {
       await unpublishIdea(id);
+      // Optionally, refresh the ideas list after unpublishing
+      loadIdeas();
     } catch (error) {
       console.error("Failed to unpublish idea:", error);
     }
   };
+
   const handlePublish = async (id) => {
     try {
       await publishIdea(id);
+      // Optionally, refresh the ideas list after publishing
+      loadIdeas();
     } catch (error) {
       console.error("Failed to publish idea:", error);
     }
@@ -98,12 +111,14 @@ const IdeaPage = ({ searchParams }) => {
   );
 
   const renderContent = () => {
-    if (ideas.length === 0) {
+    const displayIdeas = selectedStatus ? filteredIdeas : ideas;
+
+    if (displayIdeas.length === 0) {
       return Array(MAX_ITEM)
         .fill()
         .map((_, index) => <SkeletonRow key={index} />);
     }
-    return ideas.map((idea) => (
+    return displayIdeas.map((idea) => (
       <IdeaRow
         key={idea.id}
         idea={idea}
@@ -113,12 +128,16 @@ const IdeaPage = ({ searchParams }) => {
       />
     ));
   };
+
   return (
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
           <Search />
-          <Filter filterOptions={["Pending", "Released"]} />
+          <Filter
+            filterOptions={["Pending", "Released"]}
+            onFilterChange={handleFilterChange}
+          />
         </div>
         <table className={styles.table}>
           <thead>
