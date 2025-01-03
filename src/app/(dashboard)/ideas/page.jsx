@@ -2,8 +2,8 @@
 import Search from "@/components/ui/search";
 import { Pagination } from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
-import { useUnpublishIdea } from "@/hooks/publish/unPublish";
-import { usePublishIdea } from "@/hooks/publish/publish";
+import { useUnpublishIdea } from "../../../hooks/publish/unPublish";
+import { usePublishIdea } from "../../../hooks/publish/publish";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/loading";

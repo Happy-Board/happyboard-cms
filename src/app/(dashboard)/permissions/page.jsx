@@ -5,7 +5,7 @@ import { MdAdd } from "react-icons/md";
 import { toast } from "react-toastify";
 import styles from "@/styles/permission.module.css";
 import { delAPIPermission, postAPICreatePermission } from "@/services/utils";
-import { usePermissions } from "@/hooks/usePermissions";
+import { usePermissions } from "../../../hooks/usePermissions";
 import { Pagination2 } from "@/components/pagination";
 import Search from "@/components/ui/search";
 import { useState, useEffect } from "react";
