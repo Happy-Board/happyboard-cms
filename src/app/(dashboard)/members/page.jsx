@@ -2,8 +2,8 @@
 
 import styles from "@/styles/members.module.css";
 import { Pagination } from "@/components/pagination";
-import { useActiveUser } from "@/hooks/publish/publish";
-import { useBanUser } from "@/hooks/publish/unPublish";
+import { useActiveUser } from "@/hooks/publishIdea/publishIdea";
+import { useBanUser } from "@/hooks/publishIdea/unPublishIdea";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";

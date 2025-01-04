@@ -2,8 +2,8 @@
 import styles from "@/styles/singleUser.module.css";
 import { usePathname } from "next/navigation";
 import { useUserData } from "../../../../hooks/useUsersData";
-import { useActiveUser } from "../../../../hooks/publish/publish";
-import { useBanUser } from "../../../../hooks/publish/unPublish";
+import { useActiveUser } from "../../../../hooks/publishIdea/publishIdea";
+import { useBanUser } from "../../../../hooks/publishIdea/unpublishIdea";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUpdateRole } from "../../../../hooks/useUpdateRole";
