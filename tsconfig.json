@@ -38,7 +38,7 @@
         "./src/services"
       ],
       "@/hooks": [
-        "./src/hooks/*"
+        "./src/hooks"
       ],
     }
   },
@@ -48,7 +48,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/layout.jsx"
-, "src/components/ui/login/loginForm.jsx", "src/app/dashboard/roles/page.jsx"  ],
+, "src/components/ui/login/loginForm.jsx", "src/app/(dashboard)/roles/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]

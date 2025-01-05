@@ -11,6 +11,12 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4 
+      - name: Create .env file
+        run: |
+            echo "NEXT_PUBLIC_SERVER_URL=${{secrets.NEXT_PUBLIC_SERVER_URL}}" >> .env
+            echo "HOSTNAME=${{secrets.HOSTNAME}}" >> .env
+            echo "PORT=${{secrets.PORT}}" >> .env
+
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image

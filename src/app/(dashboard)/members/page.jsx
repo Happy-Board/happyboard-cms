@@ -3,7 +3,7 @@
 import styles from "@/styles/members.module.css";
 import { Pagination } from "@/components/pagination";
 import { useActiveUser } from "@/hooks/publishIdea/publishIdea";
-import { useBanUser } from "@/hooks/publishIdea/unPublishIdea";
+import { useBanUser } from "@/hooks/publishIdea/unpublishIdea";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";

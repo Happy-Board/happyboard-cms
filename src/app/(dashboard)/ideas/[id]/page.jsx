@@ -1,11 +1,11 @@
 "use client";
 
-import { useIdeaData } from "../../../../hooks/useIdeasData";
+import { useIdeaData } from "@/hooks/useIdeasData";
 import styles from "@/styles/singleIdea.module.css";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { useUnpublishIdea } from "../../../../hooks/publishIdea/unPublishIdea";
-import { usePublishIdea } from "../../../../hooks/publishIdea/publishIdea";
+import { useUnpublishIdea } from "@/hooks/publishIdea/unpublishIdea";
+import { usePublishIdea } from "@/hooks/publishIdea/publishIdea";
 import moment from "moment-timezone";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";

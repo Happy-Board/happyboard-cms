@@ -2,7 +2,7 @@
 import Search from "@/components/ui/search";
 import { Pagination } from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
-import { useUnpublishIdea } from "@/hooks/publishIdea/unPublishIdea";
+import { useUnpublishIdea } from "@/hooks/publishIdea/unpublishIdea";
 import { usePublishIdea } from "@/hooks/publishIdea/publishIdea";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
