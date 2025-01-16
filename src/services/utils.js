@@ -300,10 +300,10 @@ export const putAPIUpdateRole = async (userId, roleId, uid) => {
     throw err;
   }
 };
-export const putAPIAddPermissionForRole = async (roleId, permissionId) => {
+export const putAPIAddPermissionForRole = async (roleId, permissions) => {
   try {
     const res = await axiosInstance.put(`/users/role/${roleId}/permissions`, {
-      permissionId,
+      permissions: permissions,
     });
     if (res.data.data !== 200) {
       console.log(res.data.message || "API error");
@@ -352,11 +352,14 @@ export const delAPIPermission = async (permissionId) => {
     throw err;
   }
 };
-export const delAPIAddPermissionForRole = async (roleId, permissionId) => {
+export const delAPIAddPermissionForRole = async (roleId, permissions) => {
   try {
-    const res = await axiosInstance.put(`/users/role/${roleId}/permissions`, {
-      permissionId,
-    });
+    const res = await axiosInstance.put(
+      `/users/role/${roleId}/permissions/del`,
+      {
+        permissions: permissions,
+      }
+    );
     if (res.data.data !== 200) {
       console.log(res.data.message || "API error");
       return false;

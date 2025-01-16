@@ -43,8 +43,13 @@ const RolePermissionPopUpAdd = ({
     setSelectedPermission("");
   };
 
+  const handlePermissionChange = (permissionId) => {
+    setSelectedPermission([permissionId]); // Chỉ giữ một phần tử trong mảng
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('selectedPermission: ', selectedPermission)
 
     if (!selectedPermission) {
       toast.error("Please select a permission!", {
@@ -104,8 +109,8 @@ const RolePermissionPopUpAdd = ({
               <div className={styles.formGroup}>
                 <label>Select Permission</label>
                 <select
-                  value={selectedPermission}
-                  onChange={(e) => setSelectedPermission(e.target.value)}
+                  value={selectedPermission[0] || ""}
+                  onChange={(e) => handlePermissionChange(e.target.value)}
                   required
                 >
                   <option value="">Select a Permission</option>
@@ -153,6 +158,11 @@ const RolePermissionPopUpDel = ({
     setIsOpen(false);
     setSelectedPermission("");
   };
+
+  const handlePermissionChange = (permissionId) => {
+    setSelectedPermission([permissionId]); // Chỉ giữ một phần tử trong mảng
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -214,8 +224,8 @@ const RolePermissionPopUpDel = ({
               <div className={styles.formGroup}>
                 <label>Select Permission</label>
                 <select
-                  value={selectedPermission}
-                  onChange={(e) => setSelectedPermission(e.target.value)}
+                  value={selectedPermission[0] || ""}
+                  onChange={(e) => handlePermissionChange(e.target.value)}
                   required
                 >
                   <option value="">Select a Permission</option>
