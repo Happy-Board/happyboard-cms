@@ -223,10 +223,16 @@ const Chart4 = () => {
       }
     };
   }, [uid]);
-  const newIdeasData = newIdeasByDay.map((data) => ({
-    date: data.date,
-    ideas: data.ideaCount,
-  }));
+
+  const newIdeasData = newIdeasByDay
+    .map((data) => ({
+      date: data.date,
+      ideas: data.ideaCount,
+    }))
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  const maxIdeaCount = Math.max(...newIdeasData.map((data) => data.ideas)) || 0;
+  const yAxisMax = Math.ceil(maxIdeaCount * 1.1); // Thêm 10% khoảng dư
 
   return (
     <div className={styles.container}>
@@ -245,7 +251,7 @@ const Chart4 = () => {
           }}
         >
           <XAxis dataKey="date" />
-          <YAxis />
+          <YAxis domain={[0, yAxisMax]}/>
           <Tooltip contentStyle={{ background: "#151c2c", border: "none" }} />
           <Legend />
           <Line

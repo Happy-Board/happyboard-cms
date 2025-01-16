@@ -2,8 +2,8 @@
 
 import styles from "@/styles/members.module.css";
 import { Pagination } from "@/components/pagination";
-import { useActiveUser } from "@/hooks/Publish/publish";
-import { useBanUser } from "@/hooks/Publish/unPublish";
+import { useActiveUser } from "@/hooks/publishIdea/publishIdea";
+import { useBanUser } from "@/hooks/publishIdea/unpublishIdea";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { UserRow } from "@/components/ui/member";
 import Search from "@/components/ui/search";
@@ -149,7 +149,7 @@ const UsersPage = ({ searchParams }) => {
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search />
+          {/* <Search /> */}
           <Filter
             filterOptions={["User", "Admin", "Super Administrator"]}
             onFilterChange={handleFilterChange}

@@ -346,11 +346,11 @@ const RolesManager = () => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search
+        {/* <Search
           placeholder="Search roles..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        /> */}
         <div>
           <input
             type="text"

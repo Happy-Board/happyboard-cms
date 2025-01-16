@@ -1,9 +1,9 @@
 "use client";
-import Search from "@/components/ui/search";
+// import Search from "@/components/ui/search";
 import { Pagination } from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
-import { useUnpublishIdea } from "@/hooks/Publish/unPublish";
-import { usePublishIdea } from "@/hooks/Publish/publish";
+import { useUnpublishIdea } from "@/hooks/publishIdea/unpublishIdea";
+import { usePublishIdea } from "@/hooks/publishIdea/publishIdea";
 import IdeaRow from "@/components/ui/idea";
 import { Suspense, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/loading";
@@ -133,7 +133,7 @@ const IdeaPage = ({ searchParams }) => {
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search />
+          {/* <Search /> */}
           <Filter
             filterOptions={["Pending", "Released"]}
             onFilterChange={handleFilterChange}

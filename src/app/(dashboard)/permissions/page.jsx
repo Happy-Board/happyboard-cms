@@ -208,11 +208,11 @@ const PermissionManager = () => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search
+        {/* <Search
           placeholder="Search permissions..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        /> */}
         <PermissionPopUp onPermissionAdded={loadPermissions} />
       </div>
       <table className={styles.table}>
