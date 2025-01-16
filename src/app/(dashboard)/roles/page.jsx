@@ -1,7 +1,7 @@
 "use client";
 
-import { useRoles } from "../../../hooks/useRoles";
-import { usePermissions } from "../../../hooks/usePermissions";
+import { useRoles } from "@/hooks/useRoles";
+import { usePermissions } from "@/hooks/usePermissions";
 import { toast } from "react-toastify";
 import * as React from "react";
 import styles from "@/styles/permission.module.css";
@@ -346,11 +346,11 @@ const RolesManager = () => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search
+        {/* <Search
           placeholder="Search roles..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        /> */}
         <div>
           <input
             type="text"

@@ -1,5 +1,5 @@
 "use client";
-import Search from "@/components/ui/search";
+// import Search from "@/components/ui/search";
 import { Pagination } from "@/components/pagination";
 import styles from "@/styles/idea.module.css";
 import { useUnpublishIdea } from "@/hooks/publishIdea/unpublishIdea";
@@ -133,7 +133,7 @@ const IdeaPage = ({ searchParams }) => {
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search />
+          {/* <Search /> */}
           <Filter
             filterOptions={["Pending", "Released"]}
             onFilterChange={handleFilterChange}

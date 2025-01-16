@@ -149,7 +149,7 @@ const UsersPage = ({ searchParams }) => {
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search />
+          {/* <Search /> */}
           <Filter
             filterOptions={["User", "Admin", "Super Administrator"]}
             onFilterChange={handleFilterChange}

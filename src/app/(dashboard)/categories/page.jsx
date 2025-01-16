@@ -9,8 +9,8 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { MdDeleteOutline, MdHighlightOff } from "react-icons/md";
 import { Pagination } from "@/components/pagination";
 import { PopUp, ExistPopUp } from "@/components/ui/popup";
-import { useDeleteCat } from "../../../hooks/Categories/useDeleteCat";
-import Search from "@/components/ui/search";
+import { useDeleteCat } from "@/hooks/Categories/useDeleteCat";
+// import Search from "@/components/ui/search";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/loading";
@@ -125,7 +125,6 @@ const Category = () => {
     <Suspense>
       <div className={styles.container}>
         <div className={styles.top}>
-          <Search />
           <PopUp onCategoryAdded={reloadCategories} />
         </div>
         <table className={styles.table}>

@@ -5,7 +5,7 @@ import { MdAdd } from "react-icons/md";
 import { toast } from "react-toastify";
 import styles from "@/styles/permission.module.css";
 import { delAPIPermission, postAPICreatePermission } from "@/services/utils";
-import { usePermissions } from "../../../hooks/usePermissions";
+import { usePermissions } from "@/hooks/usePermissions";
 import { Pagination2 } from "@/components/pagination";
 import Search from "@/components/ui/search";
 import { useState, useEffect } from "react";
@@ -208,11 +208,11 @@ const PermissionManager = () => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <Search
+        {/* <Search
           placeholder="Search permissions..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        /> */}
         <PermissionPopUp onPermissionAdded={loadPermissions} />
       </div>
       <table className={styles.table}>
